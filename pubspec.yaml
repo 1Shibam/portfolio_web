@@ -85,7 +85,7 @@ flutter:
   fonts:
     - family: Freeman
       fonts:
-        - asset: assets/fonts/Freeman-Regular.ttf
+        - asset: assets/fonts/Figtree-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
