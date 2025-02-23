@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web/themes/text_styles.dart';
 
 class WebScreenLayout extends StatelessWidget {
   const WebScreenLayout({super.key});
@@ -15,7 +14,19 @@ class WebScreenLayout extends StatelessWidget {
             Icon(
               Icons.dashboard,
               color: Theme.of(context).primaryColor,
-            )
+            ),
+            SizedBox(
+              width: 16,
+            ),
+            RichText(
+                text: TextSpan(
+                    text: 'SHIVAM ',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                    children: [
+                  TextSpan(
+                      text: '/ Application Developer',
+                      style: Theme.of(context).textTheme.headlineSmall)
+                ]))
           ],
         ),
         actions: [
