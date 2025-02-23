@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:portfolio_web/router/router_config.dart';
+import 'package:portfolio_web/themes/app_theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -17,6 +19,13 @@ class MyPortfolioWeb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router();
+    return MaterialApp.router(
+      routerConfig: router,
+      title: 'Portfolio',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+    );
   }
 }
