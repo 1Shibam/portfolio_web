@@ -83,9 +83,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Freeman
+    - family: Roboto
       fonts:
-        - asset: assets/fonts/Figtree-VariableFont_wght.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

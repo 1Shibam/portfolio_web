@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web/themes/colors.dart';
+import 'package:portfolio_web/themes/text_styles.dart';
 
 class WebScreenLayout extends StatelessWidget {
   const WebScreenLayout({super.key});
@@ -6,16 +8,20 @@ class WebScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
+        backgroundColor: AppColors.background,
+        elevation: 1,
+        shadowColor: Colors.black,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               Icons.dashboard,
-              color: Theme.of(context).primaryColor,
+              color: AppColors.secondaryText,
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             RichText(
@@ -71,7 +77,7 @@ class CustomTextButtons extends StatelessWidget {
           onPressed: () {},
           child: Text(
             text,
-            style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+            style: AppTextStyles.button,
           )),
     );
   }
