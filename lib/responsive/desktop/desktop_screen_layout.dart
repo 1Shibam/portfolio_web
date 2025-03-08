@@ -11,10 +11,23 @@ class DesktopScreenLayout extends StatelessWidget {
       children: [
         Expanded(
             child: Drawer(
-          shape: RoundedRectangleBorder(),
+          shape: const RoundedRectangleBorder(),
           backgroundColor: AppColors.lightBlue,
           child: ListView(
-            children: [DrawerHeader(child: Text('Menu'))],
+            children: const [
+              ListTile(
+                title: Text('About'),
+              ),
+              ListTile(
+                title: Text('Projects'),
+              ),
+              ListTile(
+                title: Text('Resume'),
+              ),
+              ListTile(
+                title: Text('Contact'),
+              ),
+            ],
           ),
         )),
         Expanded(
@@ -27,7 +40,7 @@ class DesktopScreenLayout extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 6,
+                  flex: 11,
                   child: Container(
                     color: AppColors.lightBlue,
                   ),

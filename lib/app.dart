@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/router/router_config.dart';
+import 'package:portfolio_web/theme/web_theme.dart';
 
 class PortfolioWeb extends StatelessWidget {
   const PortfolioWeb({super.key});
@@ -8,8 +9,7 @@ class PortfolioWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
+      theme: webAppThem,
     );
   }
 }
-
-
