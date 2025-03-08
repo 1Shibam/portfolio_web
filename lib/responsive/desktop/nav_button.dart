@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web/theme/text_styles.dart';
 
 class NavButton extends StatelessWidget {
   final String title;
@@ -14,7 +15,7 @@ class NavButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Text(
           title,
-          style: const TextStyle(fontSize: 18, color: Colors.white),
+          style: AppTextStyles.heading,
         ),
       ),
     );
