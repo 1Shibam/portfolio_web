@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web/theme/colors.dart';
+
 
 class DesktopScreenLayout extends StatelessWidget {
   const DesktopScreenLayout({super.key});
@@ -12,7 +12,7 @@ class DesktopScreenLayout extends StatelessWidget {
         Expanded(
             child: Drawer(
           shape: const RoundedRectangleBorder(),
-          backgroundColor: AppColors.lightBlue,
+  
           child: ListView(
             children: const [
               ListTile(
@@ -36,13 +36,13 @@ class DesktopScreenLayout extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    color: AppColors.darkBlue,
+           
                   ),
                 ),
                 Expanded(
                   flex: 11,
                   child: Container(
-                    color: AppColors.lightBlue,
+            
                   ),
                 ),
               ],

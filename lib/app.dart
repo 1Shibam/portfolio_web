@@ -9,7 +9,7 @@ class PortfolioWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
-      theme: webAppThem,
+      theme: webAppTheme,
     );
   }
 }

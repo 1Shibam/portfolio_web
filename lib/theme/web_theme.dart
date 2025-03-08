@@ -1,9 +1,3 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web/theme/colors.dart';
 
-ThemeData webAppThem = ThemeData(
-    scaffoldBackgroundColor: AppColors.darkBackground,
-    cardColor: AppColors.darkBackground,
-    drawerTheme: const DrawerThemeData(
-      backgroundColor: AppColors.darkBlue,
-    ));
+ThemeData webAppTheme = ThemeData();
