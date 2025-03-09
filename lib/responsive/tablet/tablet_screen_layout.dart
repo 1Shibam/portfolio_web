@@ -29,8 +29,7 @@ class TabletScreenLayout extends StatelessWidget {
                   // Optional: change if needed
                 ),
                 child: IconButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   icon: Icon(
                     Icons.menu,
                     size: maxHeight * 0.06,
@@ -44,81 +43,87 @@ class TabletScreenLayout extends StatelessWidget {
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          /// 1. **Background with the animated gradient**
-          Consumer(
-            builder: (context, ref, child) {
-              final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
-              final gradientCentre =
-                  ref.watch(gradientCenterProvider).value ?? Alignment.center;
-              return AnimatedContainer(
-                duration: const Duration(seconds: 2),
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    tileMode: TileMode.repeated,
-                    center: gradientCentre,
-                    radius: radiusValue,
-                    focalRadius: 300,
-                    transform: const GradientRotation(0),
-                    colors: const [
-                      Color.fromARGB(255, 0, 0, 0),
-                      Color.fromARGB(255, 29, 29, 29)
-                    ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: maxWidth * 0.02, vertical: maxHeight * 0.02),
+        child: Stack(
+          children: [
+            /// 1. **Background with the animated gradient**
+            Consumer(
+              builder: (context, ref, child) {
+                final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
+                final gradientCentre =
+                    ref.watch(gradientCenterProvider).value ?? Alignment.center;
+                return AnimatedContainer(
+                  duration: const Duration(seconds: 2),
+                  decoration: BoxDecoration(
+                    gradient: RadialGradient(
+                      tileMode: TileMode.repeated,
+                      center: gradientCentre,
+                      radius: radiusValue,
+                      focalRadius: 300,
+                      transform: const GradientRotation(0),
+                      colors: const [
+                        Color.fromARGB(255, 0, 0, 0),
+                        Color.fromARGB(255, 29, 29, 29)
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          )
-              .animate()
-              .fade(duration: 500.ms)
-              .scaleXY(end: 1.02, duration: 500.ms),
+                );
+              },
+            )
+                .animate()
+                .fade(duration: 500.ms)
+                .scaleXY(end: 1.02, duration: 500.ms),
 
-          /// 2. **Apply blur effect to everything below**
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-            child: Container(
-              color: Colors.black.withOpacity(0.05), // Adjust opacity as needed
-            ),
-          ),
-
-          /// 3. **Foreground content**
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 0.02 * maxWidth,
-            ),
-            child: Container(
-              height: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.light, width: 2),
-                borderRadius: BorderRadius.circular(0.05 * maxWidth),
+            /// 2. **Apply blur effect to everything below**
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: Container(
+                color:
+                    Colors.black.withOpacity(0.05), // Adjust opacity as needed
               ),
-              child: Row(
-                children: [
-                  const Expanded(
-                    child:
-                        Center(child: Text('This is about me rells speasking')),
-                  ),
-                  SizedBox(
-                    height: maxHeight * 0.6,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: VerticalDivider(
-                        thickness: 2,
-                        color: AppColors.light,
+            ),
+
+            /// 3. **Foreground content**
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 0.02 * maxWidth,
+              ),
+              child: Container(
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.light, width: 2),
+                  borderRadius: BorderRadius.circular(0.05 * maxWidth),
+                ),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Center(
+                          child: Text('This is about me rells speasking')),
+                    ),
+                    SizedBox(
+                      height: maxHeight * 0.6,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: VerticalDivider(
+                          thickness: 2,
+                          color: AppColors.light,
+                        ),
                       ),
                     ),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text('This is where I put my skills I don’t have'),
+                    const Expanded(
+                      child: Center(
+                        child:
+                            Text('This is where I put my skills I don’t have'),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
