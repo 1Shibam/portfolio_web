@@ -13,6 +13,7 @@ GoRouter router = GoRouter(initialLocation: '/landing', routes: [
       return CustomTransitionPage(
         child: const LandingScreen(),
         key: state.pageKey,
+        transitionDuration: const Duration(seconds: 1),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
               opacity:
@@ -31,6 +32,7 @@ GoRouter router = GoRouter(initialLocation: '/landing', routes: [
           tablet: TabletScreenLayout(),
           mobile: MobileScreenLayout(),
         ),
+        transitionDuration: const Duration(seconds: 1),
         key: state.pageKey,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
