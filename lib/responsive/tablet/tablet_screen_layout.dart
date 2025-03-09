@@ -23,14 +23,13 @@ class TabletScreenLayout extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomRight,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle, // Ensure it's a proper button shape
                   color: Colors.transparent,
                   // Optional: change if needed
                 ),
                 child: IconButton(
                   onPressed: () {
-                    print('Menu button tapped');
                   },
                   icon: Icon(
                     Icons.menu,
@@ -53,9 +52,6 @@ class TabletScreenLayout extends StatelessWidget {
               final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
               final gradientCentre =
                   ref.watch(gradientCenterProvider).value ?? Alignment.center;
-              print('i ran');
-              print(
-                  'Updating Gradient: radius=$radiusValue, center=$gradientCentre');
               return AnimatedContainer(
                 duration: const Duration(seconds: 2),
                 decoration: BoxDecoration(

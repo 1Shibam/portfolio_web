@@ -29,9 +29,6 @@ class _DesktopScreenLayoutState extends State<DesktopScreenLayout> {
               final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
               final gradientCentre =
                   ref.watch(gradientCenterProvider).value ?? Alignment.center;
-              print('i ran');
-              print(
-                  'Updating Gradient: radius=$radiusValue, center=$gradientCentre');
               return AnimatedContainer(
                 duration: const Duration(seconds: 2),
                 decoration: BoxDecoration(
