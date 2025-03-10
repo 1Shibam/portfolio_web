@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/tablet/about_page_tablet.dart';
+
 import 'package:portfolio_web/theme/colors.dart';
 
 class TabletScreenLayout extends ConsumerWidget {
