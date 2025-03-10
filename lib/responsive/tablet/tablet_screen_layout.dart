@@ -3,15 +3,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/desktop/nav_button.dart';
 import 'package:portfolio_web/theme/colors.dart';
 
-class TabletScreenLayout extends StatelessWidget {
+class TabletScreenLayout extends ConsumerWidget {
   const TabletScreenLayout({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    int selectedIndex = ref.watch(selectedIndexProvider);
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -86,41 +88,14 @@ class TabletScreenLayout extends StatelessWidget {
             ),
 
             /// 3. **Foreground content**
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 0.02 * maxWidth,
-              ),
-              child: Container(
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.light, width: 2),
-                  borderRadius: BorderRadius.circular(0.05 * maxWidth),
-                ),
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Center(
-                          child: Text('This is about me rells speasking')),
-                    ),
-                    SizedBox(
-                      height: maxHeight * 0.6,
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: VerticalDivider(
-                          thickness: 2,
-                          color: AppColors.light,
-                        ),
-                      ),
-                    ),
-                    const Expanded(
-                      child: Center(
-                        child:
-                            Text('This is where I put my skills I don’t have'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            IndexedStack(
+              index: selectedIndex,
+              children: [
+                AboutPageTab(maxWidth: maxWidth, maxHeight: maxHeight),
+                const Center(child: Text('this is project section'),),
+                const Center(child: Text('this is Resume section'),),
+                const Center(child: Text('this is contact section'),),
+              ],
             ),
           ],
         ),
@@ -129,8 +104,8 @@ class TabletScreenLayout extends StatelessWidget {
   }
 }
 
-class TabDrawer extends StatelessWidget {
-  const TabDrawer({
+class AboutPageTab extends StatelessWidget {
+  const AboutPageTab({
     super.key,
     required this.maxWidth,
     required this.maxHeight,
@@ -141,6 +116,56 @@ class TabDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 0.02 * maxWidth,
+      ),
+      child: Container(
+        height: double.infinity,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.light, width: 2),
+          borderRadius: BorderRadius.circular(0.05 * maxWidth),
+        ),
+        child: Row(
+          children: [
+            const Expanded(
+              child: Center(child: Text('This is about me rells speasking')),
+            ),
+            SizedBox(
+              height: maxHeight * 0.6,
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: VerticalDivider(
+                  thickness: 2,
+                  color: AppColors.light,
+                ),
+              ),
+            ),
+            const Expanded(
+              child: Center(
+                child: Text('This is where I put my skills I don’t have'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TabDrawer extends ConsumerWidget {
+  const TabDrawer({
+    super.key,
+    required this.maxWidth,
+    required this.maxHeight,
+  });
+
+  final double maxWidth;
+  final double maxHeight;
+
+  @override
+  Widget build(BuildContext context, ref) {
+    int selectedIndex = ref.watch(selectedIndexProvider);
     return Expanded(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -153,10 +178,31 @@ class TabDrawer extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                NavButton(title: 'About', onTap: () {}),
-                NavButton(title: 'Projects', onTap: () {}),
-                NavButton(title: 'Resume', onTap: () {}),
-                NavButton(title: 'Connect', onTap: () {}),
+                NavButton(
+                  title: 'About',
+                  onTap: () {
+                    ref.read(selectedIndexProvider.notifier).state = 0;
+                  },
+                  isSelected: selectedIndex == 0,
+                ),
+                NavButton(
+                    title: 'Projects',
+                    onTap: () {
+                      ref.read(selectedIndexProvider.notifier).state = 1;
+                    },
+                    isSelected: selectedIndex == 0),
+                NavButton(
+                    title: 'Resume',
+                    onTap: () {
+                      ref.read(selectedIndexProvider.notifier).state = 2;
+                    },
+                    isSelected: selectedIndex == 0),
+                NavButton(
+                    title: 'Connect',
+                    onTap: () {
+                      ref.read(selectedIndexProvider.notifier).state = 3;
+                    },
+                    isSelected: selectedIndex == 0),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.0),
                   child: Divider(
