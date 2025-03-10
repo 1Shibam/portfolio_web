@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
+import 'package:portfolio_web/responsive/desktop/contact_section.dart';
 
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/desktop/project_section_widget.dart';
+import 'package:portfolio_web/responsive/desktop/resume_section.dart';
 import 'package:portfolio_web/responsive/nav_buttons.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
@@ -79,12 +81,8 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                     AboutPageDesktop(maxWidth: maxWidth, maxHeight: maxHeight),
                     ProjectSectionWidget(
                         maxHeight: maxHeight, maxWidth: maxWidth),
-                    const Center(
-                      child: Text('this is Resume section'),
-                    ),
-                    const Center(
-                      child: Text('this is contact section'),
-                    ),
+                    const ResumeSection(),
+                    const ContactSection()
                   ],
                 ),
               ),
