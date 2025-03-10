@@ -33,7 +33,7 @@ class _LandingScreenState extends State<LandingScreen> {
           child: AnimatedTextKit(
             animatedTexts: [
               TyperAnimatedText('L O A D I N G . . . .',
-                  textStyle: AppTextStyles.heading,
+                  textStyle: AppTextStyles.heading(context),
                   speed: const Duration(milliseconds: 80))
             ],
           ),
