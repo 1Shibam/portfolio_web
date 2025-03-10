@@ -7,16 +7,25 @@ import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class DesktopScreenLayout extends StatefulWidget {
+
+
+// State provider for tracking selected index
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
+
+
+class DesktopScreenLayout extends ConsumerStatefulWidget {
   const DesktopScreenLayout({super.key});
 
   @override
-  State<DesktopScreenLayout> createState() => _DesktopScreenLayoutState();
+  ConsumerState<DesktopScreenLayout> createState() => _DesktopScreenLayoutState();
 }
 
-class _DesktopScreenLayoutState extends State<DesktopScreenLayout> {
+class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
+  
+  
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = ref.watch(selectedIndexProvider);
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
 
@@ -65,42 +74,14 @@ class _DesktopScreenLayoutState extends State<DesktopScreenLayout> {
             children: [
               Expanded(
                 flex: 4,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 0.02 * maxWidth,
-                    vertical: 0.1 * maxHeight,
-                  ),
-                  child: Container(
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.light, width: 2),
-                      borderRadius: BorderRadius.circular(0.05 * maxWidth),
-                    ),
-                    child: Row(
-                      children: [
-                        const Expanded(
-                          child: Center(
-                              child: Text('This is about me rells speasking')),
-                        ),
-                        SizedBox(
-                          height: maxHeight * 0.6,
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: VerticalDivider(
-                              thickness: 2,
-                              color: AppColors.light,
-                            ),
-                          ),
-                        ),
-                        const Expanded(
-                          child: Center(
-                            child: Text(
-                                'This is where I put my skills I don’t have'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                child: IndexedStack(
+                  index: selectedIndex,
+                  children: [
+                    AboutPageDesktop(maxWidth: maxWidth, maxHeight: maxHeight),
+                    const Center(child: Text('this is project section'),),
+                const Center(child: Text('this is Resume section'),),
+                const Center(child: Text('this is contact section'),),
+                  ],
                 ),
               ),
               Expanded(
@@ -115,10 +96,31 @@ class _DesktopScreenLayoutState extends State<DesktopScreenLayout> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          NavButton(title: 'About', onTap: () {}),
-                          NavButton(title: 'Projects', onTap: () {}),
-                          NavButton(title: 'Resume', onTap: () {}),
-                          NavButton(title: 'Connect', onTap: () {}),
+                          NavButton(
+                            title: 'About',
+                            onTap: () {
+                              setState(() => selectedIndex = 0);
+                            },
+                            isSelected: selectedIndex == 0,
+                          ),
+                          NavButton(
+                              title: 'Projects',
+                              onTap: () {
+                                setState(() => selectedIndex = 1);
+                              },
+                              isSelected: selectedIndex == 1),
+                          NavButton(
+                              title: 'Resume',
+                              onTap: () {
+                                setState(() => selectedIndex = 2);
+                              },
+                              isSelected: selectedIndex == 2),
+                          NavButton(
+                              title: 'Connect',
+                              onTap: () {
+                                setState(() => selectedIndex = 3);
+                              },
+                              isSelected: selectedIndex == 3),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 12.0),
                             child: Divider(
@@ -135,6 +137,57 @@ class _DesktopScreenLayoutState extends State<DesktopScreenLayout> {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AboutPageDesktop extends StatelessWidget {
+  const AboutPageDesktop({
+    super.key,
+    required this.maxWidth,
+    required this.maxHeight,
+  });
+
+  final double maxWidth;
+  final double maxHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 0.02 * maxWidth,
+      ).copyWith(top: maxHeight * 0.1, bottom: maxHeight * 0.02),
+      child: Container(
+        height: double.infinity,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.light, width: 2),
+          borderRadius: BorderRadius.circular(0.05 * maxWidth),
+        ),
+        child: Row(
+          children: [
+            const Expanded(
+              child: Center(
+                  child: Text('This is about me rells speasking')),
+            ),
+            SizedBox(
+              height: maxHeight * 0.6,
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: VerticalDivider(
+                  thickness: 2,
+                  color: AppColors.light,
+                ),
+              ),
+            ),
+            const Expanded(
+              child: Center(
+                child: Text(
+                    'This is where I put my skills I don’t have'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
