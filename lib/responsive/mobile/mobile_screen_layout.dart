@@ -5,7 +5,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
-import 'package:portfolio_web/responsive/desktop/nav_button.dart';
+import 'package:portfolio_web/responsive/mobile/about_page_mobile.dart';
+
 import 'package:portfolio_web/theme/colors.dart';
 
 class MobileScreenLayout extends ConsumerStatefulWidget {
@@ -109,118 +110,8 @@ class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout> {
   }
 }
 
-class AboutPageMobile extends StatelessWidget {
-  const AboutPageMobile({
-    super.key,
-    required this.maxWidth,
-    required this.maxHeight,
-  });
 
-  final double maxWidth;
-  final double maxHeight;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 0.02 * maxWidth,
-      ),
-      child: Container(
-        height: double.infinity,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.light, width: 2),
-          borderRadius: BorderRadius.circular(0.05 * maxWidth),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Expanded(
-              child: Center(child: Text('This is about me rells speasking')),
-            ),
-            SizedBox(
-              height: maxHeight * 0.6,
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Divider(
-                  thickness: 2,
-                  color: AppColors.light,
-                ),
-              ),
-            ),
-            const Expanded(
-              child: Center(
-                child: Text('This is where I put my skills I don’t have'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
-class TabDrawer extends ConsumerWidget {
-  const TabDrawer({
-    super.key,
-    required this.maxWidth,
-    required this.maxHeight,
-  });
 
-  final double maxWidth;
-  final double maxHeight;
 
-  @override
-  Widget build(BuildContext context, ref) {
-    int selectedIndex = ref.watch(selectedIndexProvider);
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 0.02 * maxWidth,
-          vertical: 0.15 * maxHeight,
-        ),
-        child: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                NavButton(
-                  title: 'About',
-                  onTap: () {
-                    ref.read(selectedIndexProvider.notifier).state = 0;
-                  },
-                  isSelected: selectedIndex == 0,
-                ),
-                NavButton(
-                    title: 'Projects',
-                    onTap: () {
-                      ref.read(selectedIndexProvider.notifier).state = 1;
-                    },
-                    isSelected: selectedIndex == 1),
-                NavButton(
-                    title: 'Resume',
-                    onTap: () {
-                      ref.read(selectedIndexProvider.notifier).state = 2;
-                    },
-                    isSelected: selectedIndex == 2),
-                NavButton(
-                    title: 'Connect',
-                    onTap: () {
-                      ref.read(selectedIndexProvider.notifier).state = 0;
-                    },
-                    isSelected: selectedIndex == 3),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Divider(
-                    color: AppColors.light,
-                    thickness: 2,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
