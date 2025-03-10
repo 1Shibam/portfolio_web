@@ -3,9 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
-import 'package:portfolio_web/responsive/desktop/nav_button.dart';
+
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
-import 'package:portfolio_web/theme/colors.dart';
+import 'package:portfolio_web/responsive/nav_buttons.dart';
+
 import 'package:flutter_animate/flutter_animate.dart';
 
 // State provider for tracking selected index
@@ -95,49 +96,8 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                   ),
                   child: Drawer(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          NavButton(
-                            title: 'About',
-                            onTap: () {
-                              ref.read(selectedIndexProvider.notifier).state =
-                                  0;
-                            },
-                            isSelected: selectedIndex == 0,
-                          ),
-                          NavButton(
-                              title: 'Projects',
-                              onTap: () {
-                                ref.read(selectedIndexProvider.notifier).state =
-                                    1;
-                              },
-                              isSelected: selectedIndex == 1),
-                          NavButton(
-                              title: 'Resume',
-                              onTap: () {
-                                ref.read(selectedIndexProvider.notifier).state =
-                                    2;
-                              },
-                              isSelected: selectedIndex == 2),
-                          NavButton(
-                              title: 'Connect',
-                              onTap: () {
-                                ref.read(selectedIndexProvider.notifier).state =
-                                    3;
-                              },
-                              isSelected: selectedIndex == 3),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 12.0),
-                            child: Divider(
-                              color: AppColors.light,
-                              thickness: 2,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: NavbarButtons(selectedIndex: selectedIndex)),
                   ),
                 ),
               ),
@@ -148,5 +108,3 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
     );
   }
 }
-
-

@@ -28,7 +28,7 @@ class _LandingScreenState extends State<LandingScreen> {
             gradient: LinearGradient(colors: [
           Color.fromARGB(255, 0, 0, 0),
           Color.fromARGB(255, 29, 29, 29)
-        ])),
+        ], tileMode: TileMode.clamp)),
         child: Center(
           child: AnimatedTextKit(
             animatedTexts: [

@@ -39,7 +39,7 @@ class NavbarButtons extends ConsumerWidget {
         NavButton(
             title: 'Connect',
             onTap: () {
-              ref.read(selectedIndexProvider.notifier).state = 0;
+              ref.read(selectedIndexProvider.notifier).state = 3;
             },
             isSelected: selectedIndex == 3),
         const Padding(
