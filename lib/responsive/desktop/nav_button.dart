@@ -29,7 +29,7 @@ class NavButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: Text(
             title,
-            style: AppTextStyles.heading,
+            style: AppTextStyles.subheading(context),
           ),
         ),
       ),
