@@ -2,27 +2,24 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/responsive/desktop/nav_button.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-
-
 // State provider for tracking selected index
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
-
 
 class DesktopScreenLayout extends ConsumerStatefulWidget {
   const DesktopScreenLayout({super.key});
 
   @override
-  ConsumerState<DesktopScreenLayout> createState() => _DesktopScreenLayoutState();
+  ConsumerState<DesktopScreenLayout> createState() =>
+      _DesktopScreenLayoutState();
 }
 
 class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
-  
-  
   @override
   Widget build(BuildContext context) {
     int selectedIndex = ref.watch(selectedIndexProvider);
@@ -78,9 +75,15 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                   index: selectedIndex,
                   children: [
                     AboutPageDesktop(maxWidth: maxWidth, maxHeight: maxHeight),
-                    const Center(child: Text('this is project section'),),
-                const Center(child: Text('this is Resume section'),),
-                const Center(child: Text('this is contact section'),),
+                    const Center(
+                      child: Text('this is project section'),
+                    ),
+                    const Center(
+                      child: Text('this is Resume section'),
+                    ),
+                    const Center(
+                      child: Text('this is contact section'),
+                    ),
                   ],
                 ),
               ),
@@ -99,26 +102,30 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                           NavButton(
                             title: 'About',
                             onTap: () {
-                              setState(() => selectedIndex = 0);
+                              ref.read(selectedIndexProvider.notifier).state =
+                                  0;
                             },
                             isSelected: selectedIndex == 0,
                           ),
                           NavButton(
                               title: 'Projects',
                               onTap: () {
-                                setState(() => selectedIndex = 1);
+                                ref.read(selectedIndexProvider.notifier).state =
+                                    1;
                               },
                               isSelected: selectedIndex == 1),
                           NavButton(
                               title: 'Resume',
                               onTap: () {
-                                setState(() => selectedIndex = 2);
+                                ref.read(selectedIndexProvider.notifier).state =
+                                    2;
                               },
                               isSelected: selectedIndex == 2),
                           NavButton(
                               title: 'Connect',
                               onTap: () {
-                                setState(() => selectedIndex = 3);
+                                ref.read(selectedIndexProvider.notifier).state =
+                                    3;
                               },
                               isSelected: selectedIndex == 3),
                           const Padding(
@@ -142,53 +149,4 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
   }
 }
 
-class AboutPageDesktop extends StatelessWidget {
-  const AboutPageDesktop({
-    super.key,
-    required this.maxWidth,
-    required this.maxHeight,
-  });
 
-  final double maxWidth;
-  final double maxHeight;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 0.02 * maxWidth,
-      ).copyWith(top: maxHeight * 0.1, bottom: maxHeight * 0.02),
-      child: Container(
-        height: double.infinity,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.light, width: 2),
-          borderRadius: BorderRadius.circular(0.05 * maxWidth),
-        ),
-        child: Row(
-          children: [
-            const Expanded(
-              child: Center(
-                  child: Text('This is about me rells speasking')),
-            ),
-            SizedBox(
-              height: maxHeight * 0.6,
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: VerticalDivider(
-                  thickness: 2,
-                  color: AppColors.light,
-                ),
-              ),
-            ),
-            const Expanded(
-              child: Center(
-                child: Text(
-                    'This is where I put my skills I don’t have'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
