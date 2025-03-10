@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
+import 'package:portfolio_web/responsive/desktop/project_section_widget.dart';
 import 'package:portfolio_web/responsive/nav_buttons.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
@@ -76,9 +77,8 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                   index: selectedIndex,
                   children: [
                     AboutPageDesktop(maxWidth: maxWidth, maxHeight: maxHeight),
-                    const Center(
-                      child: Text('this is project section'),
-                    ),
+                    ProjectSectionWidget(
+                        maxHeight: maxHeight, maxWidth: maxWidth),
                     const Center(
                       child: Text('this is Resume section'),
                     ),
