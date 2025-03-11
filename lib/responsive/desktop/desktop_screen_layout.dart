@@ -74,22 +74,33 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                flex: 4,
-                child: IndexedStack(
-                  index: selectedIndex,
-                  children: [
-                    AboutPageDesktop(maxWidth: maxWidth, maxHeight: maxHeight),
-                    ProjectSectionWidget(
-                        maxHeight: maxHeight, maxWidth: maxWidth),
-                    const ResumeSection(),
-                    const ContactSection()
-                  ],
+                flex: 5,
+                child: AnimatedSwitcher(
+                  duration: const Duration(seconds: 1),
+                  switchInCurve: Curves.easeInCirc,
+                  switchOutCurve: Curves.easeOutCirc,
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  },
+                  child: IndexedStack(
+                    index: selectedIndex,
+                    children: const [
+                      AboutPageDesktop(),
+                      ProjectSectionWidget(),
+                      ResumeSection(),
+                      ContactSection()
+                    ],
+                  ),
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 0.02 * maxWidth,
+                    horizontal: 0.005 * maxWidth,
                     vertical: 0.15 * maxHeight,
                   ),
                   child: Drawer(
