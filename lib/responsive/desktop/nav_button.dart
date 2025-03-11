@@ -15,6 +15,7 @@ class NavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double maxWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -22,11 +23,14 @@ class NavButton extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               color: isSelected
-                  ? Colors.white.withOpacity(0.2)
+                  ? Colors.black.withOpacity(0.2)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppColors.light, width: 2)),
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              border: isSelected
+                  ? Border.all(color: AppColors.light, width: 2)
+                  : null),
+          padding:
+              EdgeInsets.symmetric(vertical: 12, horizontal: maxWidth * 0.03),
           child: Text(
             title,
             style: AppTextStyles.subheading(context),
