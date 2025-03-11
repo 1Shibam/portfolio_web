@@ -18,44 +18,72 @@ class SectionDividerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: 0.02 * maxWidth, vertical: maxHeight * 0.03),
+      padding: EdgeInsets.only(bottom: maxHeight * 0.02),
       child: Container(
-        height: maxHeight * .5,
+        padding: EdgeInsets.all(maxWidth * 0.03),
+        height: maxHeight * .7,
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.light, width: 2),
-          borderRadius: BorderRadius.circular(0.05 * maxWidth),
+          border: Border.all(color: AppColors.light.withOpacity(0.6), width: 1),
+          borderRadius: BorderRadius.circular(0.01 * maxWidth),
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    title1,
-                    style: AppTextStyles.subheading(context),
-                  )
-                ],
+            Flexible(
+                child: Text(
+              'Project Name',
+              style: AppTextStyles.bold(context),
+            )),
+            Flexible(
+              child: Text(
+                'this is the project where i do this and that and achieved nothing really i am delusional to be really hones :D',
+                style: AppTextStyles.medium(context),
               ),
             ),
+            Flexible(
+                child: Divider(
+              color: AppColors.light.withOpacity(0.3),
+            )),
             SizedBox(
-              height: maxHeight * 0.6,
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: VerticalDivider(
-                  thickness: 2,
-                  color: AppColors.light,
-                ),
-              ),
+              height: maxHeight * 0.015,
             ),
             Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    title2,
-                    style: AppTextStyles.subheading(context),
-                  ),
-                ],
+              child: SizedBox(
+                // Ensures the row takes full height
+                height: double.maxFinite,
+                child: Row(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.stretch, // Makes children match height
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title1,
+                            style: AppTextStyles.normal(context),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 2, // Divider thickness
+                      color: AppColors.light.withOpacity(0.8),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title2,
+                            style: AppTextStyles.normal(context),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
