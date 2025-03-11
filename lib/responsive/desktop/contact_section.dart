@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web/theme/colors.dart';
+import 'package:portfolio_web/theme/text_styles.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -9,24 +10,21 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
-    
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: maxWidth * 0.05, vertical: maxHeight * 0.05),
+      padding: EdgeInsets.symmetric(
+          horizontal: maxWidth * 0.05, vertical: maxHeight * 0.05),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Contact Me',
-            style: TextStyle(
-              fontSize: maxWidth * 0.05,
-              fontWeight: FontWeight.bold,
-              color: AppColors.light,
-            ),
+            style: AppTextStyles.heading(context),
           ).animate().fade(duration: 500.ms).slideY(),
           SizedBox(height: maxHeight * 0.02),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(maxWidth * 0.01),
               color: Colors.black.withOpacity(0.3),
               border: Border.all(color: AppColors.light.withOpacity(0.3)),
             ),
@@ -34,9 +32,11 @@ class ContactSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildContactItem(Icons.email, 'Email', 'your.email@example.com'),
+                _buildContactItem(
+                    Icons.email, 'Email', 'your.email@example.com'),
                 _buildContactItem(Icons.phone, 'Phone', '+91 1234567890'),
-                _buildContactItem(Icons.location_on, 'Location', 'Delhi, India'),
+                _buildContactItem(
+                    Icons.location_on, 'Location', 'Delhi, India'),
               ],
             ),
           ).animate().fade(duration: 800.ms).slideY(),
