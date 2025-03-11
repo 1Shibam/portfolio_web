@@ -30,12 +30,14 @@ class _LandingScreenState extends State<LandingScreen> {
           Color.fromARGB(255, 29, 29, 29)
         ], tileMode: TileMode.clamp)),
         child: Center(
-          child: AnimatedTextKit(
-            animatedTexts: [
-              TyperAnimatedText('L O A D I N G . . . .',
-                  textStyle: AppTextStyles.heading(context),
-                  speed: const Duration(milliseconds: 80))
-            ],
+          child: Expanded(
+            child: AnimatedTextKit(
+              animatedTexts: [
+                TyperAnimatedText('L O A D I N G . . . .',
+                    textStyle: AppTextStyles.heading(context),
+                    speed: const Duration(milliseconds: 80))
+              ],
+            ),
           ),
         ),
       ),
