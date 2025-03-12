@@ -26,7 +26,7 @@ class AppTextStyles {
   static TextStyle medium(BuildContext context) => TextStyle(
         fontFamily: nuraMedium,
         fontWeight: FontWeight.w500,
-        fontSize: adaptiveFontSize(context, 18),
+        fontSize: adaptiveFontSize(context, 16),
         color: const Color.fromARGB(255, 165, 215, 214),
       );
 
