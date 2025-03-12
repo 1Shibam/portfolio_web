@@ -30,25 +30,34 @@ class SectionDividerWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Flexible(
-                child: Text(
-              'Project Name',
-              style: AppTextStyles.bold(context),
-            )),
-            Flexible(
-              child: Text(
-                'this is the project where i do this and that and achieved nothing really i am delusional to be really hones :D',
-                style: AppTextStyles.medium(context),
+            Expanded(
+                child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      child: Text(
+                    'Project Name',
+                    style: AppTextStyles.bold(context),
+                  )),
+                  Flexible(
+                    child: Text(
+                      'This is the project where i do this and that and achieved nothing really i am delusional to be really hones :D',
+                      style: AppTextStyles.medium(context),
+                    ),
+                  ),
+                  Flexible(
+                      child: Divider(
+                    color: AppColors.light.withOpacity(0.3),
+                  )),
+                ],
               ),
-            ),
-            Flexible(
-                child: Divider(
-              color: AppColors.light.withOpacity(0.3),
             )),
             SizedBox(
-              height: maxHeight * 0.015,
+              height: maxHeight * 0.001,
             ),
             Expanded(
+              flex: 4,
               child: SizedBox(
                 // Ensures the row takes full height
                 height: double.maxFinite,
@@ -67,9 +76,12 @@ class SectionDividerWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      width: 2, // Divider thickness
-                      color: AppColors.light.withOpacity(0.8),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: maxWidth * 0.03),
+                      child: VerticalDivider(
+                        color: AppColors.light.withOpacity(0.3),
+                      ),
                     ),
                     Expanded(
                       child: Column(
