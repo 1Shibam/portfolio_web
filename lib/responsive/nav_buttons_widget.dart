@@ -31,17 +31,11 @@ class NavbarButtonsWidget extends ConsumerWidget {
             },
             isSelected: selectedIndex == 1),
         NavButton(
-            title: 'Resume',
+            title: 'Connect',
             onTap: () {
               ref.read(selectedIndexProvider.notifier).state = 2;
             },
             isSelected: selectedIndex == 2),
-        NavButton(
-            title: 'Connect',
-            onTap: () {
-              ref.read(selectedIndexProvider.notifier).state = 3;
-            },
-            isSelected: selectedIndex == 3),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.0),
           child: Divider(
