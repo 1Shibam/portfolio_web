@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
 
@@ -31,12 +32,12 @@ class NavButton extends StatelessWidget {
                   ? Border.all(color: AppColors.light, width: 2)
                   : null),
           padding:
-              EdgeInsets.symmetric(vertical: 12, horizontal: maxWidth * 0.03),
+              EdgeInsets.symmetric(vertical: 12, horizontal: maxWidth * 0.025),
           child: Text(
             title,
             style: AppTextStyles.normal(context),
           ),
-        ),
+        ).animate().fade(duration: 200.ms).slideY(duration: 400.ms),
       ),
     );
   }

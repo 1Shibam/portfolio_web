@@ -25,7 +25,7 @@ GoRouter router = GoRouter(initialLocation: '/landing', routes: [
     },
   ),
   GoRoute(
-    path: '/responsive',
+    path: '/portfolio',
     pageBuilder: (context, state) {
       return CustomTransitionPage(
         child: const ResponsiveDesignScreen(
@@ -44,5 +44,4 @@ GoRouter router = GoRouter(initialLocation: '/landing', routes: [
       );
     },
   ),
-
 ]);

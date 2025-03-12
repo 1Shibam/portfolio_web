@@ -25,7 +25,6 @@ class AboutPageDesktop extends StatelessWidget {
           SizedBox(height: maxHeight * 0.02),
           Expanded(
             child: Container(
-              height: double.maxFinite,
               padding: EdgeInsets.symmetric(
                   horizontal: maxWidth * 0.01, vertical: maxHeight * 0.05),
               decoration: BoxDecoration(
@@ -42,6 +41,10 @@ class AboutPageDesktop extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        'Introduction',
+                        style: AppTextStyles.bold(context),
+                      ),
                       Expanded(
                           child: ListView.builder(
                         itemCount: 4,
@@ -76,6 +79,10 @@ class AboutPageDesktop extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          'Skills',
+                          style: AppTextStyles.bold(context),
+                        ),
                         Expanded(
                             child: ListView.builder(
                           itemCount: 4,
@@ -129,17 +136,17 @@ class IntroductionTile extends StatelessWidget {
                 : Icon(
                     Icons.arrow_forward_ios,
                     color: AppColors.light,
-                    size: maxWidth * 0.02,
+                    size: maxWidth * 0.01,
                   ),
             trailing: isSkillSection
                 ? Icon(
                     Icons.arrow_back_ios,
                     color: AppColors.light,
-                    size: maxWidth * 0.02,
+                    size: maxWidth * 0.01,
                   )
                 : null,
             title: Text(
-              'I did this and that',
+              'I did this and that and i will continue to do this and that',
               style: AppTextStyles.normal(context),
             ),
           )),

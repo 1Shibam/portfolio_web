@@ -16,7 +16,7 @@ class _LandingScreenState extends State<LandingScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      if (mounted) context.go('/responsive');
+      if (mounted) context.go('/portfolio');
     });
   }
 
