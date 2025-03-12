@@ -5,7 +5,7 @@ class User {
   final int age;
   final Contact contact;
   final List<String> about;
-  final Skills skills;
+  final List<String> skills;
   final List<Experience> experience;
   final List<Project> projects;
   final Education education;
@@ -31,7 +31,7 @@ class User {
       age: json['age'],
       contact: Contact.fromJson(json['contact']),
       about: List<String>.from(json['about']),
-      skills: Skills.fromJson(json['skills']),
+      skills: List<String>.from(json['skills']),
       experience: (json['experience'] as List)
           .map((e) => Experience.fromJson(e))
           .toList(),
@@ -64,26 +64,6 @@ class Contact {
       linkedin: json['linkedin'],
       twitter: json['twitter'],
       insta: json['insta'],
-    );
-  }
-}
-
-class Skills {
-  final List<String> frontend;
-  final List<String> backend;
-  final List<String> devTools;
-
-  Skills({
-    required this.frontend,
-    required this.backend,
-    required this.devTools,
-  });
-
-  factory Skills.fromJson(Map<String, dynamic> json) {
-    return Skills(
-      frontend: List<String>.from(json['frontend']),
-      backend: List<String>.from(json['backend']),
-      devTools: List<String>.from(json['dev_tools']),
     );
   }
 }
