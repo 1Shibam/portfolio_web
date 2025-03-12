@@ -25,7 +25,9 @@ class AboutPageDesktop extends StatelessWidget {
           SizedBox(height: maxHeight * 0.02),
           Expanded(
             child: Container(
-              height: 0.6 * maxHeight,
+              height: double.maxFinite,
+              padding: EdgeInsets.symmetric(
+                  horizontal: maxWidth * 0.01, vertical: maxHeight * 0.05),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.3),
                 border: Border.all(
@@ -35,10 +37,30 @@ class AboutPageDesktop extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const Expanded(
-                    child:
-                        Center(child: Text('This is about me rells speasking')),
-                  ),
+                  Expanded(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          child: ListView.builder(
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return const IntroductionTile(
+                            isSkillSection: false,
+                          )
+                              .animate()
+                              .fade(
+                                  duration: 600.ms,
+                                  delay: (index * 200).ms) // Staggered delay
+                              .slideX(
+                                  curve: Curves.easeInOut,
+                                  duration: 500.ms,
+                                  delay: (index * 200).ms);
+                        },
+                      ))
+                    ],
+                  )),
                   SizedBox(
                     height: maxHeight * 0.6,
                     child: const Padding(
@@ -49,9 +71,30 @@ class AboutPageDesktop extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Expanded(
-                    child: Center(
-                      child: Text('This is where I put my skills I don’t have'),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                            child: ListView.builder(
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return const IntroductionTile(
+                              isSkillSection: true,
+                            )
+                                .animate()
+                                .fade(
+                                    duration: 600.ms,
+                                    delay: (index * 200).ms) // Staggered delay
+                                .slideX(
+                                    begin: 1,
+                                    curve: Curves.easeInOut,
+                                    duration: 500.ms,
+                                    delay: (index * 200).ms);
+                          },
+                        ))
+                      ],
                     ),
                   ),
                 ],
@@ -63,6 +106,43 @@ class AboutPageDesktop extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class IntroductionTile extends StatelessWidget {
+  const IntroductionTile({super.key, required this.isSkillSection});
+  final bool isSkillSection;
+  @override
+  Widget build(BuildContext context) {
+    double maxHeight = MediaQuery.of(context).size.height;
+    double maxWidth = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: maxHeight * 0.01),
+      child: Container(
+          decoration: BoxDecoration(
+              color: AppColors.light.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(maxWidth * 0.005)),
+          child: ListTile(
+            leading: isSkillSection
+                ? null
+                : Icon(
+                    Icons.arrow_forward_ios,
+                    color: AppColors.light,
+                    size: maxWidth * 0.02,
+                  ),
+            trailing: isSkillSection
+                ? Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.light,
+                    size: maxWidth * 0.02,
+                  )
+                : null,
+            title: Text(
+              'I did this and that',
+              style: AppTextStyles.normal(context),
+            ),
+          )),
     );
   }
 }
