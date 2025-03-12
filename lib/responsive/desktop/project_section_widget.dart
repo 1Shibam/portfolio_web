@@ -33,7 +33,10 @@ class _ProjectSectionWidgetState extends State<ProjectSectionWidget> {
           Text(
             'Projects',
             style: AppTextStyles.heading(context),
-          ).animate().fade(duration: 500.ms).slideY(),
+          )
+              .animate()
+              .fade(duration: 1000.ms)
+              .slideX(duration: 400.ms, curve: Curves.easeIn),
           SizedBox(
             height: maxHeight * 0.02,
           ),
@@ -53,13 +56,16 @@ class _ProjectSectionWidgetState extends State<ProjectSectionWidget> {
                     child: SectionDividerWidget(
                         maxWidth: maxWidth,
                         maxHeight: maxHeight,
-                        title1: 'video Source',
+                        title1: 'video Demo',
                         title2: 'Tech-Stacks'),
                   );
                 },
               ),
             ),
-          ),
+          )
+              .animate()
+              .fade(duration: 1000.ms)
+              .slideY(duration: 400.ms, curve: Curves.decelerate),
         ],
       ),
     );
