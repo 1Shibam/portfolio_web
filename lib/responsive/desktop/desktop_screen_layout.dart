@@ -7,7 +7,6 @@ import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/responsive/desktop/contact_section.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/desktop/project_section_widget.dart';
-import 'package:portfolio_web/responsive/desktop/resume_section.dart';
 import 'package:portfolio_web/responsive/nav_buttons_widget.dart';
 // Import your section widgets
 
@@ -102,19 +101,18 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                   children: const [
                     AboutPageDesktop(),
                     ProjectSectionWidget(),
-                    ResumeSection(),
                     ContactSection(),
                   ],
                 ),
               ),
 
-              // Navigation drawer (keep your existing implementation)
+              // Navigation drawer
               Expanded(
+                flex: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 0.005 * maxWidth,
                     vertical: 0.15 * maxHeight,
-                  ),
+                  ).copyWith(right: maxWidth * 0.02),
                   child: Drawer(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 40.0),
@@ -122,7 +120,7 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                         selectedIndex: ref.watch(selectedIndexProvider),
                       ),
                     ),
-                  ),
+                  ).animate().fade(duration: 400.ms).slideY(duration: 200.ms),
                 ),
               ),
             ],
@@ -132,29 +130,3 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
     );
   }
 }
-
-// Your existing NavbarButtons widget should update the selectedIndexProvider
-// when buttons are pressed
-
-
-/*
-final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
-              final gradientCentre =
-                  ref.watch(gradientCenterProvider).value ?? Alignment.center;
-              return AnimatedContainer(
-                duration: const Duration(seconds: 2),
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    tileMode: TileMode.repeated,
-                    center: gradientCentre,
-                    radius: radiusValue,
-                    focalRadius: 300,
-                    transform: const GradientRotation(0),
-                    colors: const [
-                      Color.fromARGB(255, 0, 0, 0),
-                      Color.fromARGB(255, 29, 29, 29)
-                    ],
-                  ),
-                ),
-              );
- */

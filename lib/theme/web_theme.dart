@@ -11,4 +11,5 @@ ThemeData webAppTheme = ThemeData(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(60),
-            side: const BorderSide(color: AppColors.light, width: 2))));
+            side: BorderSide(
+                color: AppColors.light.withOpacity(0.6), width: 1))));
