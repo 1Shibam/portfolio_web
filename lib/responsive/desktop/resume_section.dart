@@ -19,8 +19,8 @@ class ResumeSection extends StatelessWidget {
         children: [
           Text('Resume', style: AppTextStyles.heading(context))
               .animate()
-              .fade(duration: 500.ms)
-              .slideY(),
+              .fade(duration: 1000.ms)
+              .slideX(duration: 400.ms, curve: Curves.easeIn),
           SizedBox(height: maxHeight * 0.02),
           Container(
             decoration: BoxDecoration(
@@ -44,7 +44,10 @@ class ResumeSection extends StatelessWidget {
                     'Skills', 'Flutter, Dart, Firebase, REST APIs', context),
               ],
             ),
-          ).animate().fade(duration: 800.ms).slideY(),
+          )
+              .animate()
+              .fade(duration: 1000.ms)
+              .slideY(duration: 400.ms, curve: Curves.decelerate),
         ],
       ),
     );
