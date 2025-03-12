@@ -20,7 +20,10 @@ class ContactSection extends StatelessWidget {
           Text(
             'Contact Me',
             style: AppTextStyles.heading(context),
-          ).animate().fade(duration: 500.ms).slideY(),
+          )
+              .animate()
+              .fade(duration: 1000.ms)
+              .slideX(duration: 400.ms, curve: Curves.easeIn),
           SizedBox(height: maxHeight * 0.02),
           Container(
             decoration: BoxDecoration(
@@ -39,7 +42,10 @@ class ContactSection extends StatelessWidget {
                     Icons.location_on, 'Location', 'Delhi, India'),
               ],
             ),
-          ).animate().fade(duration: 800.ms).slideY(),
+          )
+              .animate()
+              .fade(duration: 1000.ms)
+              .slideY(duration: 400.ms, curve: Curves.decelerate),
         ],
       ),
     );
