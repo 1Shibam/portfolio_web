@@ -20,8 +20,8 @@ class AboutPageDesktop extends StatelessWidget {
         children: [
           Text('About', style: AppTextStyles.heading(context))
               .animate()
-              .fade(duration: 200.ms)
-              .slideY(),
+              .fade(duration: 1000.ms)
+              .slideX(curve: Curves.easeIn, duration: 400.ms),
           SizedBox(height: maxHeight * 0.02),
           Expanded(
             child: Container(
@@ -56,7 +56,10 @@ class AboutPageDesktop extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+            )
+                .animate()
+                .fade(duration: 1000.ms)
+                .slideY(curve: Curves.decelerate, duration: 400.ms),
           ),
         ],
       ),
