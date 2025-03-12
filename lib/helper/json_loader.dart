@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/model/data_model.dart';
 
 class JsonLoader {
@@ -10,3 +11,5 @@ class JsonLoader {
     return User.fromJson(jsonData);
   }
 }
+
+final jsonLoaderProvider = Provider<JsonLoader>((ref) => JsonLoader());
