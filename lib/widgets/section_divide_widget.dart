@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
 
@@ -6,14 +8,20 @@ class SectionDividerWidget extends StatelessWidget {
   const SectionDividerWidget(
       {super.key,
       required this.maxHeight,
-      required this.title1,
-      required this.title2,
+      required this.projectName,
+      required this.projectDesc,
+      required this.techStacks,
+      required this.section1,
+      required this.section2,
       required this.maxWidth});
 
   final double maxHeight;
-  final String title1;
-  final String title2;
+  final String projectName;
+  final String projectDesc;
+  final String section1;
+  final String section2;
   final double maxWidth;
+  final List<String> techStacks;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +45,12 @@ class SectionDividerWidget extends StatelessWidget {
                 children: [
                   Flexible(
                       child: Text(
-                    'Project Name',
+                    projectName,
                     style: AppTextStyles.bold(context),
                   )),
                   Flexible(
                     child: Text(
-                      'This is the project where i do this and that and achieved nothing really i am delusional to be really hones :D',
+                      projectDesc,
                       style: AppTextStyles.medium(context),
                     ),
                   ),
@@ -70,7 +78,7 @@ class SectionDividerWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            title1,
+                            section1,
                             style: AppTextStyles.normal(context),
                           ),
                         ],
@@ -88,9 +96,32 @@ class SectionDividerWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            title2,
+                            section2,
                             style: AppTextStyles.normal(context),
                           ),
+                          SizedBox(
+                            height: maxHeight * 0.01,
+                          ),
+                          Expanded(
+                              child: ListView.builder(
+                            itemCount: techStacks.length,
+                            itemBuilder: (context, index) {
+                              return IntroductionTile(
+                                      key: ValueKey(techStacks[index]),
+                                      isSkillSection: true,
+                                      text: techStacks[index])
+                                  .animate()
+                                  .fade(
+                                      duration: 600.ms,
+                                      delay:
+                                          (index * 100).ms) // Staggered delay
+                                  .slideX(
+                                      begin: 1,
+                                      curve: Curves.easeInOut,
+                                      duration: 500.ms,
+                                      delay: (index * 100).ms);
+                            },
+                          ))
                         ],
                       ),
                     ),
