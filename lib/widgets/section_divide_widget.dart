@@ -39,28 +39,26 @@ class SectionDividerWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-                child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                        child: Text(
+                      projectName,
+                      style: AppTextStyles.bold(context),
+                    )),
+                    Flexible(
                       child: Text(
-                    projectName,
-                    style: AppTextStyles.bold(context),
-                  )),
-                  Flexible(
-                    child: Text(
-                      projectDesc,
-                      style: AppTextStyles.medium(context),
+                        projectDesc,
+                        style: AppTextStyles.medium(context),
+                      ),
                     ),
-                  ),
-                  Flexible(
-                      child: Divider(
-                    color: AppColors.light.withOpacity(0.3),
-                  )),
-                ],
-              ),
-            )),
+                    Flexible(
+                        child: Divider(
+                      color: AppColors.light.withOpacity(0.3),
+                    )),
+                  ],
+                )),
             SizedBox(
               height: maxHeight * 0.001,
             ),
