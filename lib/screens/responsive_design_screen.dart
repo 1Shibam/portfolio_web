@@ -18,7 +18,7 @@ class ResponsiveDesignScreen extends StatelessWidget {
         final width = constraints.maxWidth;
         if (width >= 1280) {
           return desktop;
-        } else if (width < 1280 && width >= 768) {
+        } else if ( width >= 768) {
           return tablet;
         } else {
           return mobile;
