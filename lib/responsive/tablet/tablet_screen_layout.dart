@@ -91,15 +91,15 @@ class TabletScreenLayout extends ConsumerWidget {
             /// 3. **Foreground content**
             IndexedStack(
               index: selectedIndex,
-              children: [
-                AboutPageTab(maxWidth: maxWidth, maxHeight: maxHeight),
-                const Center(
+              children: const [
+                AboutPageTab(),
+                 Center(
                   child: Text('this is project section'),
                 ),
-                const Center(
+                 Center(
                   child: Text('this is Resume section'),
                 ),
-                const Center(
+                Center(
                   child: Text('this is contact section'),
                 ),
               ],

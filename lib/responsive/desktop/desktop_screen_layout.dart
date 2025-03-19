@@ -7,7 +7,10 @@ import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/responsive/desktop/contact_section.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/desktop/project_section_widget.dart';
+import 'package:portfolio_web/responsive/mobile/about_page_mobile.dart';
 import 'package:portfolio_web/responsive/nav_buttons_widget.dart';
+import 'package:portfolio_web/responsive/tablet/about_page_tablet.dart';
+import 'package:portfolio_web/screens/about_page_layout.dart';
 // Import your section widgets
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
@@ -99,7 +102,10 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                   physics:
                       const NeverScrollableScrollPhysics(), // Disable swipe
                   children: const [
-                    AboutPageDesktop(),
+                    AboutPageLayout(
+                        desktopAbout: AboutPageDesktop(),
+                        tabletAbout: AboutPageTab(),
+                        mobileAbout: AboutPageMobile()),
                     ProjectSectionWidget(),
                     ContactSection(),
                   ],

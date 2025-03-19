@@ -3,16 +3,13 @@ import 'package:portfolio_web/theme/colors.dart';
 
 class AboutPageMobile extends StatelessWidget {
   const AboutPageMobile({
-    super.key,
-    required this.maxWidth,
-    required this.maxHeight,
+    super.key
   });
-
-  final double maxWidth;
-  final double maxHeight;
 
   @override
   Widget build(BuildContext context) {
+    double maxWidth = MediaQuery.of(context).size.width;
+    double maxHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 0.02 * maxWidth,

@@ -96,11 +96,17 @@ class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout> {
             /// 3. **Foreground content**
             IndexedStack(
               index: selectedIndex,
-              children: [
-                AboutPageMobile(maxWidth: maxWidth, maxHeight: maxHeight),
-                const Center(child: Text('this is project section'),),
-                const Center(child: Text('this is Resume section'),),
-                const Center(child: Text('this is contact section'),),
+              children: const [
+                AboutPageMobile(),
+                Center(
+                  child: Text('this is project section'),
+                ),
+                Center(
+                  child: Text('this is Resume section'),
+                ),
+                Center(
+                  child: Text('this is contact section'),
+                ),
               ],
             ),
           ],
@@ -109,9 +115,3 @@ class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout> {
     );
   }
 }
-
-
-
-
-
-

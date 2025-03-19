@@ -4,15 +4,12 @@ import 'package:portfolio_web/theme/colors.dart';
 class AboutPageTab extends StatelessWidget {
   const AboutPageTab({
     super.key,
-    required this.maxWidth,
-    required this.maxHeight,
   });
-
-  final double maxWidth;
-  final double maxHeight;
 
   @override
   Widget build(BuildContext context) {
+    double maxWidth = MediaQuery.of(context).size.width;
+    double maxHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 0.02 * maxWidth,
