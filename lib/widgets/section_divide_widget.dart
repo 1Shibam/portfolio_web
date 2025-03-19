@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class SectionDividerWidget extends StatefulWidget {
   const SectionDividerWidget({
@@ -241,7 +240,3 @@ class _TechStackCardsState extends State<TechStackCards> {
     );
   }
 }
-
-
-
-
