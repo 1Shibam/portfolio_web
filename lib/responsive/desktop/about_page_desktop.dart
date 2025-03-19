@@ -100,12 +100,13 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
                               )
                                   .animate()
                                   .fade(
-                                      duration: 600.ms,
-                                      delay: (1200).ms) // Staggered delay
+                                      duration: 800.ms,
+                                      delay: (900).ms) // Staggered delay
                                   .slideX(
+                                      begin: -1,
                                       curve: Curves.easeInOut,
-                                      duration: 500.ms,
-                                      delay: (1200).ms),
+                                      duration: 600.ms,
+                                      delay: (900).ms),
                               SizedBox(
                                 width: maxWidth * 0.05,
                               ),
@@ -133,13 +134,13 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
                               )
                                   .animate()
                                   .fade(
-                                      duration: 600.ms,
-                                      delay: (1200).ms) // Staggered delay
+                                      duration: 800.ms,
+                                      delay: (900).ms) // Staggered delay
                                   .slideX(
                                     begin: 1,
                                     curve: Curves.easeInOut,
-                                    duration: 500.ms,
-                                    delay: (1200).ms,
+                                    duration: 600.ms,
+                                    delay: (900).ms,
                                   ),
                             ]))
                       ],
@@ -324,6 +325,9 @@ class _IntroductionTileState extends State<IntroductionTile> {
                     : AppColors.light.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(maxWidth * 0.005)),
             child: ListTile(
+              tileColor: isHovered
+                  ? AppColors.light.withOpacity(0.25)
+                  : AppColors.light.withOpacity(0.1),
               leading: widget.isSkillSection
                   ? null
                   : Icon(
