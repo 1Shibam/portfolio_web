@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/nav_button.dart';
 import 'package:portfolio_web/theme/colors.dart';
+import 'dart:html' as html;
 
 class NavbarButtonsWidget extends ConsumerStatefulWidget {
   const NavbarButtonsWidget({super.key, required this.selectedIndex});
@@ -27,8 +28,13 @@ class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
       'assets/icons/linkedin-svgrepo-com.svg',
       'assets/icons/github-svgrepo-com.svg',
       'assets/icons/leetcode-svgrepo-com.svg',
-      'assets/icons/twitter-svgrepo-com.svg',
-      'assets/icons/instagram-svgrepo-com.svg'
+    ];
+
+//my social urls to put on on click ---
+    final List<String> socialUrls = [
+      'https://www.linkedin.com/in/sh1vamm/',
+      'https://github.com/1Shibam',
+      'https://leetcode.com/u/shibammm/',
     ];
 
     return Column(
@@ -63,30 +69,35 @@ class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
               return MouseRegion(
                 onEnter: (_) => setState(() => isHovered[index] = true),
                 onExit: (_) => setState(() => isHovered[index] = false),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: EdgeInsets.all(isHovered[index] ? 10 : 5),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: isHovered[index]
-                        ? [
-                            BoxShadow(
-                              color: AppColors.light.withValues(alpha: 0.5),
-                              blurRadius: 10,
-                              spreadRadius: 5,
-                            )
-                          ]
-                        : [],
-                  ),
-                  child: SvgPicture.asset(
-                    socialImages[index],
-                    height: maxHeight * 0.06,
-                    width: maxHeight * 0.06,
-                    fit: BoxFit.contain,
-                    colorFilter: isHovered[index]
-                        ? const ColorFilter.mode(
-                            AppColors.light, BlendMode.srcIn)
-                        : null,
+                child: GestureDetector(
+                  onTap: () {
+                    html.window.open(socialUrls[index], '_blank');
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: EdgeInsets.all(isHovered[index] ? 10 : 5),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: isHovered[index]
+                          ? [
+                              BoxShadow(
+                                color: AppColors.light.withValues(alpha: 0.5),
+                                blurRadius: 10,
+                                spreadRadius: 5,
+                              )
+                            ]
+                          : [],
+                    ),
+                    child: SvgPicture.asset(
+                      socialImages[index],
+                      height: maxHeight * 0.06,
+                      width: maxHeight * 0.06,
+                      fit: BoxFit.contain,
+                      colorFilter: isHovered[index]
+                          ? const ColorFilter.mode(
+                              AppColors.light, BlendMode.srcIn)
+                          : null,
+                    ),
                   ),
                 ),
               );

@@ -93,7 +93,7 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
             children: [
               // Page View for sections
               Expanded(
-                flex: 5,
+                flex: 4,
                 child: PageView(
                   controller: _pageController,
                   physics:
@@ -111,7 +111,7 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: 0.15 * maxHeight,
+                    vertical: 0.25 * maxHeight,
                   ).copyWith(right: maxWidth * 0.02),
                   child: Drawer(
                     child: Padding(

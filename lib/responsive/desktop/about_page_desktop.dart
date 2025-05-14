@@ -223,24 +223,24 @@ class IntroAndSkillsSectoin extends StatelessWidget {
               style: AppTextStyles.bold(context),
             ),
             Expanded(
-                child: ListView.builder(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                final singleString = aboutList[index];
-                return IntroductionTile(
-                  text: singleString,
-                  isSkillSection: false,
-                )
-                    .animate()
-                    .fade(
-                        duration: 600.ms,
-                        delay: (index * 200).ms) // Staggered delay
-                    .slideX(
-                        curve: Curves.easeInOut,
-                        duration: 500.ms,
-                        delay: (index * 200).ms);
-              },
-            ))
+              child: ListView(
+                children: List.generate(aboutList.length, (index) {
+                  final singleString = aboutList[index];
+                  return IntroductionTile(
+                    text: singleString,
+                    isSkillSection: false,
+                  )
+                      .animate()
+                      .fade(
+                          duration: 600.ms,
+                          delay: (index * 200).ms) // Staggered delay
+                      .slideX(
+                          curve: Curves.easeInOut,
+                          duration: 500.ms,
+                          delay: (index * 200).ms);
+                }).toList(),
+              ),
+            )
           ],
         )),
         SizedBox(
