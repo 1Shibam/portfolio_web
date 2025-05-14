@@ -97,23 +97,24 @@ class Project {
   final List<String> technologies;
   final String github;
   final String demo;
+  final String downlaodLink;
 
-  Project({
-    required this.name,
-    required this.description,
-    required this.technologies,
-    required this.github,
-    required this.demo,
-  });
+  Project(
+      {required this.name,
+      required this.description,
+      required this.technologies,
+      required this.github,
+      required this.demo,
+      required this.downlaodLink});
 
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
-      name: json['name'],
-      description: json['description'],
-      technologies: List<String>.from(json['technologies']),
-      github: json['github'],
-      demo: json['demo'],
-    );
+        name: json['name'],
+        description: json['description'],
+        technologies: List<String>.from(json['technologies']),
+        github: json['github'],
+        demo: json['demo'],
+        downlaodLink: json['downloadLink']);
   }
 }
 
