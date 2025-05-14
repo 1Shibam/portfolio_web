@@ -45,7 +45,8 @@ class _NavButtonState extends State<NavButton> {
                   : Matrix4.identity(),
               decoration: BoxDecoration(
                 color: isHovered || widget.isSelected
-                    ? AppColors.light.withOpacity(0.1) // Same as selected color
+                    ? AppColors.light
+                        .withValues(alpha: 0.1) // Same as selected color
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(8),
                 border: isHovered || widget.isSelected
@@ -57,7 +58,7 @@ class _NavButtonState extends State<NavButton> {
                     ? [
                         BoxShadow(
                           color: AppColors.light
-                              .withOpacity(0.5), // Soft glow effect
+                              .withValues(alpha: 0.5), // Soft glow effect
                           blurRadius: 6,
                           spreadRadius: 1,
                         )

@@ -71,7 +71,7 @@ class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
                     boxShadow: isHovered[index]
                         ? [
                             BoxShadow(
-                              color: AppColors.light.withOpacity(0.5),
+                              color: AppColors.light.withValues(alpha: 0.5),
                               blurRadius: 10,
                               spreadRadius: 5,
                             )

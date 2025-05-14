@@ -6,10 +6,11 @@ ThemeData webAppTheme = ThemeData(
     scrollbarTheme: ScrollbarThemeData(
         interactive: true,
         thumbColor: const WidgetStatePropertyAll(AppColors.light),
-        trackColor: WidgetStatePropertyAll(AppColors.light.withOpacity(0.05))),
+        trackColor:
+            WidgetStatePropertyAll(AppColors.light.withValues(alpha: 0.05))),
     drawerTheme: DrawerThemeData(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(60),
             side: BorderSide(
-                color: AppColors.light.withOpacity(0.6), width: 1))));
+                color: AppColors.light.withValues(alpha: 0.6), width: 1))));

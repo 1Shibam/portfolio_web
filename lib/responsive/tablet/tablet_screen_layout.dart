@@ -83,8 +83,8 @@ class TabletScreenLayout extends ConsumerWidget {
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
               child: Container(
-                color:
-                    Colors.black.withOpacity(0.05), // Adjust opacity as needed
+                color: Colors.black
+                    .withValues(alpha: 0.05), // Adjust opacity as needed
               ),
             ),
 
@@ -93,10 +93,10 @@ class TabletScreenLayout extends ConsumerWidget {
               index: selectedIndex,
               children: const [
                 AboutPageTab(),
-                 Center(
+                Center(
                   child: Text('this is project section'),
                 ),
-                 Center(
+                Center(
                   child: Text('this is Resume section'),
                 ),
                 Center(

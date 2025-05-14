@@ -38,9 +38,9 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
                       horizontal: maxWidth * 0.01,
                     ).copyWith(top: maxHeight * 0.05),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.3),
+                      color: Colors.black.withValues(alpha: 0.3),
                       border: Border.all(
-                        color: AppColors.light.withOpacity(0.6),
+                        color: AppColors.light.withValues(alpha: 0.6),
                       ),
                       borderRadius: BorderRadius.circular(0.01 * maxWidth),
                     ),
@@ -175,14 +175,15 @@ class AnimatedButton extends StatelessWidget {
           : Matrix4.identity(),
       decoration: BoxDecoration(
         color: isHovered
-            ? AppColors.light.withOpacity(0.25)
-            : AppColors.background.withOpacity(0.3),
+            ? AppColors.light.withValues(alpha: 0.25)
+            : AppColors.background.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(maxWidth * 0.01),
         border: Border.all(color: AppColors.light),
         boxShadow: isHovered
             ? [
                 BoxShadow(
-                  color: AppColors.light.withOpacity(0.4), // Soft glow effect
+                  color: AppColors.light
+                      .withValues(alpha: 0.4), // Soft glow effect
                   blurRadius: 6,
                   spreadRadius: 1,
                 )
@@ -321,13 +322,13 @@ class _IntroductionTileState extends State<IntroductionTile> {
                 : Matrix4.identity(),
             decoration: BoxDecoration(
                 color: isHovered
-                    ? AppColors.light.withOpacity(0.25)
-                    : AppColors.light.withOpacity(0.1),
+                    ? AppColors.light.withValues(alpha: 0.25)
+                    : AppColors.light.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(maxWidth * 0.005)),
             child: ListTile(
               tileColor: isHovered
-                  ? AppColors.light.withOpacity(0.25)
-                  : AppColors.light.withOpacity(0.1),
+                  ? AppColors.light.withValues(alpha: 0.25)
+                  : AppColors.light.withValues(alpha: 0.1),
               leading: widget.isSkillSection
                   ? null
                   : Icon(

@@ -40,7 +40,8 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
             .copyWith(bottom: widget.maxHeight * 0.015),
         height: widget.maxHeight * .75,
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.light.withOpacity(0.6), width: 1),
+          border: Border.all(
+              color: AppColors.light.withValues(alpha: 0.6), width: 1),
           borderRadius: BorderRadius.circular(0.01 * widget.maxWidth),
         ),
         child: Column(
@@ -63,7 +64,7 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                     softWrap: true,
                   ),
                   Divider(
-                    color: AppColors.light.withOpacity(0.4),
+                    color: AppColors.light.withValues(alpha: 0.4),
                   ),
                 ],
               ),
@@ -89,7 +90,7 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                         horizontal: widget.maxWidth * 0.03,
                         vertical: widget.maxHeight * 0.01),
                     child: VerticalDivider(
-                      color: AppColors.light.withOpacity(0.3),
+                      color: AppColors.light.withValues(alpha: 0.3),
                     ),
                   ),
                   Expanded(
@@ -224,8 +225,8 @@ class _TechStackCardsState extends State<TechStackCards> {
             isHovered ? Matrix4.identity().scaled(1.005) : Matrix4.identity(),
         decoration: BoxDecoration(
             color: isHovered
-                ? AppColors.light.withOpacity(0.3)
-                : AppColors.light.withOpacity(0.1),
+                ? AppColors.light.withValues(alpha: 0.3)
+                : AppColors.light.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(maxWidth * 0.008)),
         padding: EdgeInsets.all(maxWidth * 0.0005),
         child: Center(

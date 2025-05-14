@@ -25,8 +25,8 @@ class ResumeSection extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.black.withOpacity(0.3),
-              border: Border.all(color: AppColors.light.withOpacity(0.3)),
+              color: Colors.black.withValues(alpha: 0.3),
+              border: Border.all(color: AppColors.light.withValues(alpha: 0.3)),
             ),
             padding: EdgeInsets.all(maxWidth * 0.03),
             child: Column(
@@ -70,7 +70,7 @@ class ResumeSection extends StatelessWidget {
               duration,
               style: AppTextStyles.normal(context),
             ),
-          Divider(color: AppColors.light.withOpacity(0.3)),
+          Divider(color: AppColors.light.withValues(alpha: 0.3)),
         ],
       ),
     );
