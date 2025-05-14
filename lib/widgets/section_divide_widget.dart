@@ -109,17 +109,15 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount:
-                                          2, // Adjust for responsiveness
+                                          3, // Adjust for responsiveness
                                       crossAxisSpacing: widget.maxWidth * 0.015,
                                       mainAxisSpacing: widget.maxHeight * 0.02,
                                       childAspectRatio: 2.6),
                               itemCount: widget.techStacks.length,
                               itemBuilder: (context, index) {
-                                return IntrinsicHeight(
-                                  child: TechStackCards(
-                                    tech: widget.techStacks[index],
-                                  ).animate().fade(duration: 600.ms),
-                                );
+                                return TechStackCards(
+                                  tech: widget.techStacks[index],
+                                ).animate().fade(duration: 600.ms);
                               },
                             ),
                           ),
@@ -212,6 +210,7 @@ class _TechStackCardsState extends State<TechStackCards> {
   @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
+    double maxHeight = MediaQuery.of(context).size.height;
     return MouseRegion(
       onEnter: (event) => setState(() {
         isHovered = true;
@@ -228,13 +227,15 @@ class _TechStackCardsState extends State<TechStackCards> {
                 ? AppColors.light.withValues(alpha: 0.3)
                 : AppColors.light.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(maxWidth * 0.008)),
-        padding: EdgeInsets.all(maxWidth * 0.0005),
+        padding: EdgeInsets.symmetric(
+            horizontal: maxWidth * 0.0005, vertical: maxHeight * 0.001),
         child: Center(
           child: Text(
             widget.tech,
             style: AppTextStyles.normal(context),
             textAlign: TextAlign.center,
             softWrap: true,
+            overflow: TextOverflow.visible, // Prevent clippin
           ),
         ),
       ),

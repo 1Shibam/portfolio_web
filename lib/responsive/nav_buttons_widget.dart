@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/nav_button.dart';
 import 'package:portfolio_web/theme/colors.dart';
-import 'dart:html' as html;
+import 'package:web/web.dart' as web;
 
 class NavbarButtonsWidget extends ConsumerStatefulWidget {
   const NavbarButtonsWidget({super.key, required this.selectedIndex});
@@ -18,6 +18,9 @@ class NavbarButtonsWidget extends ConsumerStatefulWidget {
 
 class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
   List<bool> isHovered = List.generate(5, (index) => false);
+  void openUrl(String url) {
+    web.window.open(url, '_blank');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +74,7 @@ class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
                 onExit: (_) => setState(() => isHovered[index] = false),
                 child: GestureDetector(
                   onTap: () {
-                    html.window.open(socialUrls[index], '_blank');
+                    openUrl(socialUrls[index]);
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
