@@ -35,11 +35,12 @@ class ContactSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildContactItem(
-                    Icons.email, 'Email', 'your.email@example.com'),
-                _buildContactItem(Icons.phone, 'Phone', '+91 1234567890'),
-                _buildContactItem(
-                    Icons.location_on, 'Location', 'Delhi, India'),
+                _buildContactItem(Icons.email, 'Email',
+                    'shivam55.dev@gmail.com', maxHeight, maxWidth, context),
+                _buildContactItem(Icons.phone, 'Phone', '+91-8178753392',
+                    maxHeight, maxWidth, context),
+                _buildContactItem(Icons.location_on, 'Location',
+                    'Delhi-110093, India', maxHeight, maxWidth, context),
               ],
             ),
           )
@@ -51,30 +52,32 @@ class ContactSection extends StatelessWidget {
     );
   }
 
-  Widget _buildContactItem(IconData icon, String title, String info) {
+  Widget _buildContactItem(IconData icon, String title, String info,
+      double maxHeight, double maxWidth, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Row(
+      padding: EdgeInsets.only(bottom: maxHeight * 0.01),
+      child: Column(
         children: [
-          Icon(icon, color: Colors.white, size: 24),
-          const SizedBox(width: 10),
-          Column(
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                info,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              Icon(icon, color: AppColors.light, size: maxHeight * 0.045),
+              SizedBox(width: maxWidth * 0.01),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    info,
+                    style: AppTextStyles.subheading(context),
+                  ),
+                ],
               ),
             ],
           ),
+          const Divider(
+            color: AppColors.light,
+          )
         ],
       ),
     );
