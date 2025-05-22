@@ -1,13 +1,13 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/tablet/about_page_tablet.dart';
-
-import 'package:portfolio_web/theme/colors.dart';
+import 'package:portfolio_web/responsive/tablet/contact_page_tab.dart';
+import 'package:portfolio_web/responsive/tablet/experience_page_tablet.dart';
+import 'package:portfolio_web/responsive/tablet/projets_page_tab.dart';
 
 class TabletScreenLayout extends ConsumerWidget {
   const TabletScreenLayout({super.key});
@@ -18,34 +18,6 @@ class TabletScreenLayout extends ConsumerWidget {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(maxHeight * .1),
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: maxWidth * 0.03),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle, // Ensure it's a proper button shape
-                  color: Colors.transparent,
-                  // Optional: change if needed
-                ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.menu,
-                    size: maxHeight * 0.06,
-                    color: AppColors.light,
-                  ),
-                  splashRadius: 24, // Reduces weird large tap effects
-                  constraints: const BoxConstraints(), // Removes weird padding
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: maxWidth * 0.02, vertical: maxHeight * 0.02),
@@ -93,15 +65,9 @@ class TabletScreenLayout extends ConsumerWidget {
               index: selectedIndex,
               children: const [
                 AboutPageTab(),
-                Center(
-                  child: Text('this is project section'),
-                ),
-                Center(
-                  child: Text('this is Resume section'),
-                ),
-                Center(
-                  child: Text('this is contact section'),
-                ),
+                ProjectsPageTab(),
+                ExperiencePageTab(),
+                ContactPageTab()
               ],
             ),
           ],

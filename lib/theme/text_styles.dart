@@ -1,71 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/theme/colors.dart';
-
 import 'fonts.dart';
 
-double adaptiveFontSize(BuildContext context, double baseSize) {
-  double width = MediaQuery.of(context).size.width;
-
-  if (width < 600) {
-    return baseSize * 0.9; // Small screens (mobile)
-  } else if (width < 1200) {
-    return baseSize; // Medium screens (tablets)
-  } else {
-    return baseSize * 1.2; // Large screens (desktop)
-  }
-}
-
 class AppTextStyles {
-  static TextStyle normal(BuildContext context) => TextStyle(
+  static const double _normalSize = 16;
+  static const double _boldSize = 20;
+  static const double _headingSize = 40;
+  static const double _heading2Size = 28;
+  static const double _subheadingSize = 24;
+  static const double _subheading2Size = 20;
+  static const double _buttonSize = 16;
+
+  static TextStyle normal(BuildContext context) => const TextStyle(
         fontFamily: nuraNormal,
         fontWeight: FontWeight.normal,
-        fontSize: adaptiveFontSize(context, 16),
+        fontSize: _normalSize,
         color: AppColors.light,
       );
 
-  static TextStyle medium(BuildContext context) => TextStyle(
+  static TextStyle medium(BuildContext context) => const TextStyle(
         fontFamily: nuraMedium,
         fontWeight: FontWeight.w500,
-        fontSize: adaptiveFontSize(context, 16),
-        color: const Color.fromARGB(255, 165, 215, 214),
+        fontSize: _normalSize,
+        color: Color.fromARGB(255, 165, 215, 214),
       );
 
-  static TextStyle bold(BuildContext context) => TextStyle(
+  static TextStyle bold(BuildContext context) => const TextStyle(
         fontFamily: nuraBold,
         fontWeight: FontWeight.bold,
-        fontSize: adaptiveFontSize(context, 20),
+        fontSize: _boldSize,
         color: AppColors.light,
       );
 
-  static TextStyle heading(BuildContext context) => TextStyle(
-      fontFamily: nuraBold,
-      fontWeight: FontWeight.bold,
-      fontSize: adaptiveFontSize(context, 40),
-      color: AppColors.light);
-  static TextStyle heading2(BuildContext context) => TextStyle(
-      fontFamily: nuraBold,
-      fontWeight: FontWeight.bold,
-      fontSize: adaptiveFontSize(context, 28),
-      color: AppColors.light);
-
-  static TextStyle subheading(BuildContext context) => TextStyle(
-        fontFamily: nuraMedium,
-        fontWeight: FontWeight.w500,
-        fontSize: adaptiveFontSize(context, 24),
-        color: const Color.fromARGB(255, 165, 215, 214),
-      );
-  static TextStyle subheading2(BuildContext context) => TextStyle(
-        fontFamily: nuraMedium,
-        fontWeight: FontWeight.w500,
-        fontSize: adaptiveFontSize(context, 20),
-        color: const Color.fromARGB(255, 165, 215, 214),
-      );
-
-  static TextStyle button(BuildContext context) => TextStyle(
+  static TextStyle heading(BuildContext context) => const TextStyle(
         fontFamily: nuraBold,
         fontWeight: FontWeight.bold,
-        fontSize: adaptiveFontSize(context, 16),
+        fontSize: _headingSize,
+        color: AppColors.light,
+      );
+
+  static TextStyle heading2(BuildContext context) => const TextStyle(
+        fontFamily: nuraBold,
+        fontWeight: FontWeight.bold,
+        fontSize: _heading2Size,
+        color: AppColors.light,
+      );
+
+  static TextStyle subheading(BuildContext context) => const TextStyle(
+        fontFamily: nuraMedium,
+        fontWeight: FontWeight.w500,
+        fontSize: _subheadingSize,
+        color: Color.fromARGB(255, 165, 215, 214),
+      );
+
+  static TextStyle subheading2(BuildContext context) => const TextStyle(
+        fontFamily: nuraMedium,
+        fontWeight: FontWeight.w500,
+        fontSize: _subheading2Size,
+        color: Color.fromARGB(255, 165, 215, 214),
+      );
+
+  static TextStyle button(BuildContext context) => const TextStyle(
+        fontFamily: nuraBold,
+        fontWeight: FontWeight.bold,
+        fontSize: _buttonSize,
         letterSpacing: 1.2,
-        color: const Color.fromARGB(255, 165, 215, 214),
+        color: Color.fromARGB(255, 165, 215, 214),
       );
 }
