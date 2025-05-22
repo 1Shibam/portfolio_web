@@ -55,15 +55,7 @@ class _ProjectSectionWidgetState extends State<ProjectSectionWidget> {
                     return userData.when(
                         data: (data) {
                           final projects = data.projects;
-                          /*
-                          {
-      "name": "AI-Powered Chatbot App",
-      "description": "A chatbot with real-time responses, image-based answers, and read-aloud functionality, using Firebase and Chat GPT API.",
-      "technologies": ["Flutter", "Dart", "AI Models", "Firebase", "Backend APIs"],
-      "github": "https://github.com/yourusername/chatbot-app",
-      "demo": "https://link/to/the/video"
-    }
-                           */
+
                           return ListView.builder(
                             controller: _scrollController,
                             itemCount: projects.length,
@@ -81,7 +73,9 @@ class _ProjectSectionWidgetState extends State<ProjectSectionWidget> {
                                     sourceCode: singleProj.github,
                                     downloadLink: singleProj.downlaodLink,
                                     videoUrl: singleProj.demo,
-                                    section1: 'video Demo',
+                                    section1: singleProj.demo == ""
+                                        ? 'live Demo'
+                                        : 'video Demo',
                                     section2: 'Tech-Stacks'),
                               );
                             },

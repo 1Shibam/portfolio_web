@@ -35,53 +35,45 @@ class _ExperienceSectionState extends State<ExperienceSection> {
               .fade(duration: 1000.ms)
               .slideX(duration: 400.ms, curve: Curves.easeIn),
           SizedBox(height: maxHeight * 0.02),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(maxWidth * 0.01),
-              color: Colors.black.withAlpha(30),
-              border: Border.all(color: AppColors.light.withAlpha(30)),
-            ),
-            padding: EdgeInsets.all(maxWidth * 0.03),
-            child: Consumer(
-              builder: (context, ref, child) {
-                final userdata = ref.watch(userDataStateNotifierProvider);
-                return userdata.when(
-                  data: (data) {
-                    if (data.experience.isEmpty) {
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                          'No Experience is added yet',
-                          style: AppTextStyles.medium(context),
-                        ),
-                      );
-                    }
-
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: data.experience.length,
-                      itemBuilder: (context, index) {
-                        return ExperienceCard(
-                          experience: data.experience[index],
-                        );
-                      },
+          Consumer(
+            builder: (context, ref, child) {
+              final userdata = ref.watch(userDataStateNotifierProvider);
+              return userdata.when(
+                data: (data) {
+                  if (data.experience.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'No Experience is added yet',
+                        style: AppTextStyles.medium(context),
+                      ),
                     );
-                  },
-                  error: (error, stackTrace) => Center(
-                    child: Text(
-                      'Something went wrong',
-                      style: AppTextStyles.heading2(context),
-                    ),
+                  }
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: data.experience.length,
+                    itemBuilder: (context, index) {
+                      return ExperienceCard(
+                        experience: data.experience[index],
+                      );
+                    },
+                  );
+                },
+                error: (error, stackTrace) => Center(
+                  child: Text(
+                    'Something went wrong',
+                    style: AppTextStyles.heading2(context),
                   ),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.light,
-                    ),
+                ),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.light,
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           )
               .animate()
               .fade(duration: 1000.ms)

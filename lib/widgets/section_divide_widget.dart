@@ -3,8 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
-import 'package:portfolio_web/widgets/yt_video_player.dart';
 import 'package:web/web.dart' as web;
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class SectionDividerWidget extends StatefulWidget {
   const SectionDividerWidget(
@@ -38,12 +38,20 @@ class SectionDividerWidget extends StatefulWidget {
 class _SectionDividerWidgetState extends State<SectionDividerWidget> {
   bool isHovered1 = false;
   bool isHovered2 = false;
+
   void openUrl(String url) async {
     web.window.open(url, '_blank');
   }
 
   @override
   Widget build(BuildContext context) {
+    final videoId =
+        widget.videoUrl == "" ? "" : widget.videoUrl.split('.be/')[1];
+    final controller = YoutubePlayerController.fromVideoId(
+      videoId: videoId,
+      autoPlay: false,
+      params: const YoutubePlayerParams(showFullscreenButton: true),
+    );
     return Padding(
       padding: EdgeInsets.only(bottom: widget.maxHeight * 0.02),
       child: Container(
@@ -59,7 +67,7 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -93,11 +101,6 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                           widget.section1,
                           style: AppTextStyles.normal(context),
                         ),
-                        // Text(
-                        //   widget.section1,
-                        //   style: AppTextStyles.normal(context),
-                        // ),
-
                         widget.videoUrl == ""
                             ? Expanded(
                                 child: Center(
@@ -107,7 +110,18 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                                   ),
                                 ),
                               )
-                            : YTVideoPlayer(youtubeUrl: widget.videoUrl)
+                            : Expanded(
+                                child: Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        widget.maxHeight * 0.04),
+                                    child: YoutubePlayer(
+                                      controller: controller,
+                                      aspectRatio: 16 / 9,
+                                    ),
+                                  ),
+                                ),
+                              )
                       ],
                     ),
                   ),
@@ -135,10 +149,10 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount:
-                                          3, // Adjust for responsiveness
-                                      crossAxisSpacing: widget.maxWidth * 0.015,
-                                      mainAxisSpacing: widget.maxHeight * 0.02,
-                                      childAspectRatio: 2.6),
+                                          2, // Adjust for responsiveness
+                                      crossAxisSpacing: widget.maxWidth * 0.01,
+                                      mainAxisSpacing: widget.maxHeight * 0.01,
+                                      childAspectRatio: 2.7),
                               itemCount: widget.techStacks.length,
                               itemBuilder: (context, index) {
                                 return TechStackCards(
@@ -153,6 +167,9 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: widget.maxHeight * 0.03,
             ),
             Expanded(
               flex: 2,
@@ -258,7 +275,7 @@ class _TechStackCardsState extends State<TechStackCards> {
                 : AppColors.light.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(maxWidth * 0.008)),
         padding: EdgeInsets.symmetric(
-            horizontal: maxWidth * 0.0005, vertical: maxHeight * 0.001),
+            horizontal: maxWidth * 0.000001, vertical: maxHeight * 0.0001),
         child: Center(
           child: Text(
             widget.tech,
