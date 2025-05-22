@@ -50,3 +50,6 @@ lib/firebase_options.dart
 android/app/google-services.json
 assets/data/my_data.json
 
+#idk --
+lib/screens/upload_new_resume_screen.dart
+

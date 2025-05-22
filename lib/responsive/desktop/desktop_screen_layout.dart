@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/responsive/desktop/contact_section.dart';
+import 'package:portfolio_web/responsive/desktop/experience_section.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
 import 'package:portfolio_web/responsive/desktop/project_section_widget.dart';
 import 'package:portfolio_web/responsive/nav_buttons_widget.dart';
@@ -101,6 +102,7 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                   children: const [
                     AboutPageDesktop(),
                     ProjectSectionWidget(),
+                    ExperienceSection(),
                     ContactSection(),
                   ],
                 ),
@@ -111,7 +113,7 @@ class _DesktopScreenLayoutState extends ConsumerState<DesktopScreenLayout> {
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: 0.25 * maxHeight,
+                    vertical: 0.2 * maxHeight,
                   ).copyWith(right: maxWidth * 0.02),
                   child: Drawer(
                     child: Padding(

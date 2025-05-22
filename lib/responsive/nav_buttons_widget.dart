@@ -44,18 +44,18 @@ class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         // Navigation Buttons
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
           NavButton(
-            title: ['About', 'Projects', 'Contact'][i],
+            title: ['About', 'Projects', 'Experience', 'Contact'][i],
             onTap: () {
               ref.read(selectedIndexProvider.notifier).state = i;
             },
             isSelected: widget.selectedIndex == i,
           ),
 
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
-          child: Divider(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: maxWidth * 0.01),
+          child: const Divider(
             color: AppColors.light,
             thickness: 2,
           ),

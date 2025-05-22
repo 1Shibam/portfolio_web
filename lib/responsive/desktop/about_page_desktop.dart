@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio_web/helper/data_provider.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
+import 'package:web/web.dart' as web;
 
 class AboutPageDesktop extends StatefulWidget {
   const AboutPageDesktop({
@@ -17,6 +18,23 @@ class AboutPageDesktop extends StatefulWidget {
 class _AboutPageDesktopState extends State<AboutPageDesktop> {
   bool isHovered1 = false;
   bool isHovered2 = false;
+  //opne mail client directly ---
+  void openMailClient() async {
+    final Uri emailLaunchUri =
+        Uri(scheme: 'mailto', path: 'shivam55.dev@gmail.com', queryParameters: {
+      'subject': 'Job opportunity for you shivam',
+      'body':
+          "Hi Shivam,\n\nJust went through your portfolio — solid work! If you're open to opportunities, we’d love to connect and talk more about how you can bring some of that magic to our team.\n\nLooking forward to hearing from you!"
+    });
+    web.window.open(emailLaunchUri.toString(), '_blank');
+  }
+
+  void openResume() async {
+    const url =
+        'https://res.cloudinary.com/djr0ynqe2/raw/upload/v1747893728/portfolio%20things/kcyxfmpepkfxqlpqpgpo.pdf';
+    web.window.open(url, '_blank');
+  }
+
   @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
@@ -94,6 +112,7 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
                                       isHovered: isHovered1,
                                       maxWidth: maxWidth,
                                       title: 'Resume',
+                                      onPressed: () => openResume(),
                                     ),
                                   ),
                                 ),
@@ -128,6 +147,7 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
                                       isHovered: isHovered2,
                                       maxWidth: maxWidth,
                                       title: 'Hire-Me',
+                                      onPressed: () => openMailClient(),
                                     ),
                                   ),
                                 ),
@@ -160,38 +180,43 @@ class AnimatedButton extends StatelessWidget {
       {super.key,
       required this.isHovered,
       required this.maxWidth,
-      required this.title});
+      required this.title,
+      this.onPressed});
 
   final bool isHovered;
   final double maxWidth;
   final String title;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      transform: isHovered
-          ? Matrix4.translationValues(0, -6, 0) // Moves up slightly
-          : Matrix4.identity(),
-      decoration: BoxDecoration(
-        color: isHovered
-            ? AppColors.light.withValues(alpha: 0.25)
-            : AppColors.background.withValues(alpha: 0.3),
-        borderRadius: BorderRadius.circular(maxWidth * 0.01),
-        border: Border.all(color: AppColors.light),
-        boxShadow: isHovered
-            ? [
-                BoxShadow(
-                  color: AppColors.light
-                      .withValues(alpha: 0.4), // Soft glow effect
-                  blurRadius: 6,
-                  spreadRadius: 1,
-                )
-              ]
-            : [],
-      ),
-      child: Center(
-        child: Text(title, style: AppTextStyles.bold(context)),
+    return GestureDetector(
+      onTap: onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        transform: isHovered
+            ? Matrix4.translationValues(0, -6, 0) // Moves up slightly
+            : Matrix4.identity(),
+        decoration: BoxDecoration(
+          color: isHovered
+              ? AppColors.light.withValues(alpha: 0.25)
+              : AppColors.background.withValues(alpha: 0.3),
+          borderRadius: BorderRadius.circular(maxWidth * 0.01),
+          border: Border.all(color: AppColors.light),
+          boxShadow: isHovered
+              ? [
+                  BoxShadow(
+                    color: AppColors.light
+                        .withValues(alpha: 0.4), // Soft glow effect
+                    blurRadius: 6,
+                    spreadRadius: 1,
+                  )
+                ]
+              : [],
+        ),
+        child: Center(
+          child: Text(title, style: AppTextStyles.bold(context)),
+        ),
       ),
     );
   }
