@@ -4,6 +4,7 @@ import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
 import 'package:portfolio_web/widgets/yt_video_player.dart';
+import 'package:web/web.dart' as web;
 
 class SectionDividerWidget extends StatefulWidget {
   const SectionDividerWidget(
@@ -15,6 +16,8 @@ class SectionDividerWidget extends StatefulWidget {
       required this.section1,
       required this.section2,
       required this.maxWidth,
+      required this.sourceCode,
+      required this.downloadLink,
       required this.videoUrl});
 
   final double maxHeight;
@@ -24,6 +27,8 @@ class SectionDividerWidget extends StatefulWidget {
   final String section2;
   final double maxWidth;
   final List<String> techStacks;
+  final String sourceCode;
+  final String downloadLink;
   final String videoUrl;
 
   @override
@@ -33,6 +38,9 @@ class SectionDividerWidget extends StatefulWidget {
 class _SectionDividerWidgetState extends State<SectionDividerWidget> {
   bool isHovered1 = false;
   bool isHovered2 = false;
+  void openUrl(String url) async {
+    web.window.open(url, '_blank');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +98,16 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                         //   style: AppTextStyles.normal(context),
                         // ),
 
-                        YTVideoPlayer(youtubeUrl: widget.videoUrl)
+                        widget.videoUrl == ""
+                            ? Expanded(
+                                child: Center(
+                                  child: Text(
+                                    'You are on it',
+                                    style: AppTextStyles.heading2(context),
+                                  ),
+                                ),
+                              )
+                            : YTVideoPlayer(youtubeUrl: widget.videoUrl)
                       ],
                     ),
                   ),
@@ -142,30 +159,33 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: widget.maxWidth * 0.03,
-                        ),
-                        child: MouseRegion(
-                          onEnter: (event) {
-                            setState(() {
-                              isHovered1 = true;
-                            });
-                          },
-                          onExit: (event) => setState(() {
-                            isHovered1 = false;
-                          }),
-                          child: AnimatedButton(
-                            isHovered: isHovered1,
-                            maxWidth: widget.maxWidth,
-                            title: 'Downlaod APK',
-                          ),
-                        ),
-                      ),
-                    ).animate().fade(
-                          duration: 800.ms,
-                        ) // Staggered delay
+                    widget.downloadLink == ""
+                        ? const SizedBox.shrink()
+                        : Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: widget.maxWidth * 0.03,
+                              ),
+                              child: MouseRegion(
+                                onEnter: (event) {
+                                  setState(() {
+                                    isHovered1 = true;
+                                  });
+                                },
+                                onExit: (event) => setState(() {
+                                  isHovered1 = false;
+                                }),
+                                child: AnimatedButton(
+                                  isHovered: isHovered1,
+                                  maxWidth: widget.maxWidth,
+                                  title: 'Downlaod APK',
+                                  onPressed: () => openUrl(widget.downloadLink),
+                                ),
+                              ),
+                            ),
+                          ).animate().fade(
+                              duration: 800.ms,
+                            ) // Staggered delay
                     ,
                     SizedBox(
                       width: widget.maxWidth * 0.05,
@@ -188,6 +208,7 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                             isHovered: isHovered2,
                             maxWidth: widget.maxWidth,
                             title: 'Source-Code',
+                            onPressed: () => openUrl(widget.sourceCode),
                           ),
                         ),
                       ),

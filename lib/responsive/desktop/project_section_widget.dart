@@ -78,6 +78,8 @@ class _ProjectSectionWidgetState extends State<ProjectSectionWidget> {
                                     techStacks: singleProj.technologies,
                                     maxWidth: maxWidth,
                                     maxHeight: maxHeight,
+                                    sourceCode: singleProj.github,
+                                    downloadLink: singleProj.downlaodLink,
                                     videoUrl: singleProj.demo,
                                     section1: 'video Demo',
                                     section2: 'Tech-Stacks'),

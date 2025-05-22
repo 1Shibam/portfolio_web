@@ -32,6 +32,7 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
   void openResume() async {
     const url =
         'https://drive.google.com/file/d/1RPfDWCohJ3bggkCnDAWZE_KrEoxWQBSa/view?usp=sharing';
+
     web.window.open(url, '_blank');
   }
 
