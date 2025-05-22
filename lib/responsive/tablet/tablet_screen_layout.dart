@@ -2,21 +2,45 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio_web/helper/is_nav_open_provider.dart';
 import 'package:portfolio_web/responsive/desktop/desktop_screen_layout.dart';
 import 'package:portfolio_web/responsive/desktop/gradient_value_streams.dart';
+import 'package:portfolio_web/responsive/nav_buttons_widget.dart';
 import 'package:portfolio_web/responsive/tablet/about_page_tablet.dart';
 import 'package:portfolio_web/responsive/tablet/contact_page_tab.dart';
 import 'package:portfolio_web/responsive/tablet/experience_page_tablet.dart';
 import 'package:portfolio_web/responsive/tablet/projets_page_tab.dart';
 
-class TabletScreenLayout extends ConsumerWidget {
+class TabletScreenLayout extends ConsumerStatefulWidget {
   const TabletScreenLayout({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
-    int selectedIndex = ref.watch(selectedIndexProvider);
+  ConsumerState<TabletScreenLayout> createState() => _TabletScreenLayoutState();
+}
+
+class _TabletScreenLayoutState extends ConsumerState<TabletScreenLayout> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    final selectedIndex = ref.watch(selectedIndexProvider);
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
+    bool isNavOpen = ref.watch(isNavOpenProvider);
+
+    // Navigate when selectedIndex changes
+    ref.listen(selectedIndexProvider, (prev, next) {
+      _pageController.jumpToPage(next);
+      ref.read(isNavOpenProvider.notifier).state = false; // Close nav
+    });
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -61,15 +85,31 @@ class TabletScreenLayout extends ConsumerWidget {
             ),
 
             /// 3. **Foreground content**
-            IndexedStack(
-              index: selectedIndex,
+            /// Page View for content
+            PageView(
+              controller: _pageController,
+              physics: const NeverScrollableScrollPhysics(), // prevent swiping
               children: const [
                 AboutPageTab(),
                 ProjectsPageTab(),
                 ExperiencePageTab(),
-                ContactPageTab()
+                ContactPageTab(),
               ],
             ),
+
+            /// Navigation drawer-like UI
+            if (isNavOpen)
+              Align(
+                alignment: Alignment.center,
+                child: Material(
+                  color: Colors.black.withValues(alpha: 0.6),
+                  child: SizedBox(
+                    width: maxWidth * 0.5,
+                    height: maxHeight,
+                    child: NavbarButtonsWidget(selectedIndex: selectedIndex),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

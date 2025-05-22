@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'
     show AsyncValueX, Consumer;
+import 'package:portfolio_web/helper/is_nav_open_provider.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/helper/data_provider.dart';
@@ -55,18 +56,25 @@ class _AboutPageTabState extends State<AboutPageTab> {
                   .animate()
                   .fade(duration: 1000.ms)
                   .slideX(curve: Curves.easeIn, duration: 400.ms),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.menu,
-                  size: maxHeight * 0.06,
-                  color: AppColors.light,
-                ),
-                splashRadius: 24,
-              ).animate().fade(duration: 1000.ms).slideX(
-                    curve: Curves.easeIn,
-                    duration: 400.ms,
-                  ),
+              Consumer(
+                builder: (context, ref, child) {
+                  final isNavOpen = ref.watch(isNavOpenProvider);
+                  return IconButton(
+                    onPressed: () {
+                      ref.read(isNavOpenProvider.notifier).state = !isNavOpen;
+                    },
+                    icon: Icon(
+                      Icons.menu,
+                      size: maxHeight * 0.06,
+                      color: AppColors.light,
+                    ),
+                    splashRadius: 24,
+                  ).animate().fade(duration: 1000.ms).slideX(
+                        curve: Curves.easeIn,
+                        duration: 400.ms,
+                      );
+                },
+              )
             ],
           ),
           SizedBox(height: maxHeight * 0.02),
