@@ -3,18 +3,19 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
+import 'package:portfolio_web/widgets/yt_video_player.dart';
 
 class SectionDividerWidget extends StatefulWidget {
-  const SectionDividerWidget({
-    super.key,
-    required this.maxHeight,
-    required this.projectName,
-    required this.projectDesc,
-    required this.techStacks,
-    required this.section1,
-    required this.section2,
-    required this.maxWidth,
-  });
+  const SectionDividerWidget(
+      {super.key,
+      required this.maxHeight,
+      required this.projectName,
+      required this.projectDesc,
+      required this.techStacks,
+      required this.section1,
+      required this.section2,
+      required this.maxWidth,
+      required this.videoUrl});
 
   final double maxHeight;
   final String projectName;
@@ -23,6 +24,7 @@ class SectionDividerWidget extends StatefulWidget {
   final String section2;
   final double maxWidth;
   final List<String> techStacks;
+  final String videoUrl;
 
   @override
   State<SectionDividerWidget> createState() => _SectionDividerWidgetState();
@@ -31,6 +33,7 @@ class SectionDividerWidget extends StatefulWidget {
 class _SectionDividerWidgetState extends State<SectionDividerWidget> {
   bool isHovered1 = false;
   bool isHovered2 = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -74,7 +77,7 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Expanded(
+                  Flexible(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -82,6 +85,12 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                           widget.section1,
                           style: AppTextStyles.normal(context),
                         ),
+                        // Text(
+                        //   widget.section1,
+                        //   style: AppTextStyles.normal(context),
+                        // ),
+
+                        YTVideoPlayer(youtubeUrl: widget.videoUrl)
                       ],
                     ),
                   ),

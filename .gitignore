@@ -53,3 +53,4 @@ assets/data/my_data.json
 #idk --
 lib/screens/upload_new_resume_screen.dart
 
+.env

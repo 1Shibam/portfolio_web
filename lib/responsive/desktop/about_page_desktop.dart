@@ -31,7 +31,7 @@ class _AboutPageDesktopState extends State<AboutPageDesktop> {
 
   void openResume() async {
     const url =
-        'https://res.cloudinary.com/djr0ynqe2/raw/upload/v1747893728/portfolio%20things/kcyxfmpepkfxqlpqpgpo.pdf';
+        'https://drive.google.com/file/d/1RPfDWCohJ3bggkCnDAWZE_KrEoxWQBSa/view?usp=sharing';
     web.window.open(url, '_blank');
   }
 
