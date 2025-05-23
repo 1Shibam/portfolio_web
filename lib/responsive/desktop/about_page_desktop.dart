@@ -314,13 +314,13 @@ class _IntroductionTileState extends State<IntroductionTile> {
                   : Icon(
                       Icons.arrow_forward_ios,
                       color: AppColors.light,
-                      size: maxWidth * 0.01,
+                      size: maxHeight * 0.02,
                     ),
               trailing: widget.isSkillSection
                   ? Icon(
                       Icons.arrow_back_ios,
                       color: AppColors.light,
-                      size: maxWidth * 0.01,
+                      size: maxHeight * 0.02,
                     )
                   : null,
               title: Text(

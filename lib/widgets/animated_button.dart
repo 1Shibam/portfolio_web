@@ -8,11 +8,13 @@ class AnimatedButton extends StatelessWidget {
       required this.isHovered,
       required this.maxWidth,
       required this.title,
+      this.isMobile = false,
       this.onPressed});
 
   final bool isHovered;
   final double maxWidth;
   final String title;
+  final bool? isMobile;
   final VoidCallback? onPressed;
 
   @override
