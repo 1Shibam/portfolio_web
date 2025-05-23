@@ -6,6 +6,7 @@ import 'package:portfolio_web/helper/is_nav_open_provider.dart';
 import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
+import 'package:portfolio_web/widgets/animated_button.dart';
 import 'package:web/web.dart' as web;
 
 class AboutPageMobile extends ConsumerStatefulWidget {
@@ -18,7 +19,7 @@ class AboutPageMobile extends ConsumerStatefulWidget {
 class _AboutPageMobileState extends ConsumerState<AboutPageMobile> {
   bool isHovered1 = false;
   bool isHovered2 = false;
-  //opne mail client directly ---
+
   void openMailClient() async {
     final Uri emailLaunchUri =
         Uri(scheme: 'mailto', path: 'shivam55.dev@gmail.com', queryParameters: {
@@ -32,7 +33,6 @@ class _AboutPageMobileState extends ConsumerState<AboutPageMobile> {
   void openResume() async {
     const url =
         'https://drive.google.com/file/d/1RPfDWCohJ3bggkCnDAWZE_KrEoxWQBSa/view?usp=sharing';
-
     web.window.open(url, '_blank');
   }
 
@@ -41,12 +41,14 @@ class _AboutPageMobileState extends ConsumerState<AboutPageMobile> {
     double maxWidth = MediaQuery.of(context).size.width;
     double maxHeight = MediaQuery.of(context).size.height;
     final mydata = ref.watch(userDataStateNotifierProvider);
+
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: maxWidth * 0.05, vertical: maxHeight * 0.05),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Title + Menu
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -75,67 +77,95 @@ class _AboutPageMobileState extends ConsumerState<AboutPageMobile> {
               )
             ],
           ),
+
           SizedBox(height: maxHeight * 0.02),
+
+          // Main Scrollable Container
           Expanded(
             child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: maxWidth * 0.02, vertical: maxHeight * 0.01),
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.light, width: 2),
-                  borderRadius: BorderRadius.circular(0.05 * maxWidth),
-                ),
-                child: mydata.when(
-                  data: (portfolioData) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              padding: EdgeInsets.symmetric(
+                  horizontal: maxWidth * 0.02, vertical: maxHeight * 0.01),
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.light, width: 2),
+                borderRadius: BorderRadius.circular(0.05 * maxWidth),
+              ),
+              child: mydata.when(
+                data: (portfolioData) {
+                  return SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: portfolioData.about.length,
-                            itemBuilder: (context, index) {
-                              return IntroductionTile(
-                                  isSkillSection: false,
-                                  text: portfolioData.about[index]);
-                            },
-                          ),
+                        // Introduction Section
+                        Text("Introduction",
+                            style: AppTextStyles.bold(context)),
+                        SizedBox(height: maxHeight * 0.005),
+                        ...portfolioData.about.map((text) => IntroductionTile(
+                            isSkillSection: false, text: text)),
+
+                        SizedBox(height: maxHeight * 0.02),
+                        const Divider(
+                          thickness: 2,
+                          color: AppColors.light,
                         ),
-                        SizedBox(
-                          height: maxHeight * 0.02,
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Divider(
-                              thickness: 2,
-                              color: AppColors.light,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: portfolioData.skills.length,
-                            itemBuilder: (context, index) {
-                              return IntroductionTile(
-                                  isSkillSection: true,
-                                  text: portfolioData.skills[index]);
-                            },
-                          ),
-                        ),
+                        SizedBox(height: maxHeight * 0.02),
+
+                        // Skills Section
+                        Text("Skills", style: AppTextStyles.bold(context)),
+                        SizedBox(height: maxHeight * 0.005),
+                        ...portfolioData.skills.map((text) =>
+                            IntroductionTile(isSkillSection: true, text: text)),
                       ],
-                    );
-                  },
-                  error: (error, stackTrace) {
-                    return Center(
-                      child: Text(
-                        'Something went wrong!!',
-                        style: AppTextStyles.normal(context),
-                      ),
-                    );
-                  },
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.light,
                     ),
+                  );
+                },
+                error: (error, stackTrace) => Center(
+                  child: Text(
+                    'Something went wrong!!',
+                    style: AppTextStyles.normal(context),
                   ),
-                )),
+                ),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(color: AppColors.light),
+                ),
+              ),
+            ),
+          ),
+
+          SizedBox(height: maxHeight * 0.02),
+
+          // Bottom Buttons
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MouseRegion(
+                onEnter: (_) => setState(() => isHovered1 = true),
+                onExit: (_) => setState(() => isHovered1 = false),
+                child: SizedBox(
+                  width: maxWidth * 0.35,
+                  height: maxHeight * 0.06,
+                  child: AnimatedButton(
+                    isHovered: isHovered1,
+                    maxWidth: maxWidth,
+                    title: 'Resume',
+                    onPressed: openResume,
+                  ),
+                ),
+              ),
+              MouseRegion(
+                onEnter: (_) => setState(() => isHovered2 = true),
+                onExit: (_) => setState(() => isHovered2 = false),
+                child: SizedBox(
+                  width: maxWidth * 0.35,
+                  height: maxHeight * 0.06,
+                  child: AnimatedButton(
+                    isHovered: isHovered2,
+                    maxWidth: maxWidth,
+                    title: 'Hire Me',
+                    onPressed: openMailClient,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
