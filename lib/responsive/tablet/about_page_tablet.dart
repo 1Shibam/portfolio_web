@@ -7,6 +7,7 @@ import 'package:portfolio_web/responsive/desktop/about_page_desktop.dart';
 import 'package:portfolio_web/theme/colors.dart';
 import 'package:portfolio_web/helper/data_provider.dart';
 import 'package:portfolio_web/theme/text_styles.dart';
+import 'package:portfolio_web/widgets/animated_button.dart';
 import 'package:web/web.dart' as web;
 
 class AboutPageTab extends StatefulWidget {
