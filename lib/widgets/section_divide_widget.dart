@@ -143,24 +143,18 @@ class _SectionDividerWidgetState extends State<SectionDividerWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding:
-                                EdgeInsets.only(top: widget.maxHeight * 0.01),
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount:
-                                          2, // Adjust for responsiveness
-                                      crossAxisSpacing: widget.maxWidth * 0.01,
-                                      mainAxisSpacing: widget.maxHeight * 0.01,
-                                      childAspectRatio: 2.7),
-                              itemCount: widget.techStacks.length,
-                              itemBuilder: (context, index) {
-                                return TechStackCards(
-                                  tech: widget.techStacks[index],
-                                ).animate().fade(duration: 600.ms);
-                              },
-                            ),
-                          ),
+                              padding:
+                                  EdgeInsets.only(top: widget.maxHeight * 0.01),
+                              child: ListView.builder(
+                                itemCount: widget.techStacks.length,
+                                itemBuilder: (context, index) {
+                                  return IntroductionTile(
+                                          isSkillSection: false,
+                                          text: widget.techStacks[index])
+                                      .animate()
+                                      .fade(duration: 600.ms);
+                                },
+                              )),
                         ),
                       ],
                     ),

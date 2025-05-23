@@ -67,7 +67,7 @@ class _NavbarButtonsWidgetState extends ConsumerState<NavbarButtonsWidget> {
           child: Wrap(
             spacing: maxWidth * 0.02,
             runSpacing: maxHeight * 0.02,
-            alignment: WrapAlignment.center,
+            alignment: WrapAlignment.spaceBetween,
             children: List.generate(socialImages.length, (index) {
               return MouseRegion(
                 onEnter: (_) => setState(() => isHovered[index] = true),

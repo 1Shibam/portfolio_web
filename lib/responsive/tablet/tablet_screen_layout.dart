@@ -10,6 +10,7 @@ import 'package:portfolio_web/responsive/tablet/about_page_tablet.dart';
 import 'package:portfolio_web/responsive/tablet/contact_page_tab.dart';
 import 'package:portfolio_web/responsive/tablet/experience_page_tablet.dart';
 import 'package:portfolio_web/responsive/tablet/projets_page_tab.dart';
+import 'package:portfolio_web/theme/colors.dart';
 
 class TabletScreenLayout extends ConsumerStatefulWidget {
   const TabletScreenLayout({super.key});
@@ -42,76 +43,102 @@ class _TabletScreenLayoutState extends ConsumerState<TabletScreenLayout> {
       ref.read(isNavOpenProvider.notifier).state = false; // Close nav
     });
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: maxWidth * 0.02, vertical: maxHeight * 0.02),
-        child: Stack(
-          children: [
-            /// 1. **Background with the animated gradient**
-            Consumer(
-              builder: (context, ref, child) {
-                final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
-                final gradientCentre =
-                    ref.watch(gradientCenterProvider).value ?? Alignment.center;
-                return AnimatedContainer(
-                  duration: const Duration(seconds: 2),
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      tileMode: TileMode.repeated,
-                      center: gradientCentre,
-                      radius: radiusValue,
-                      focalRadius: 300,
-                      transform: const GradientRotation(0),
-                      colors: const [
-                        Color.fromARGB(255, 0, 0, 0),
-                        Color.fromARGB(255, 29, 29, 29)
-                      ],
-                    ),
+      body: Stack(
+        children: [
+          /// 1. **Background with the animated gradient**
+          Consumer(
+            builder: (context, ref, child) {
+              final radiusValue = ref.watch(radiusProvider).value ?? 0.3;
+              final gradientCentre =
+                  ref.watch(gradientCenterProvider).value ?? Alignment.center;
+              return AnimatedContainer(
+                duration: const Duration(seconds: 2),
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    tileMode: TileMode.repeated,
+                    center: gradientCentre,
+                    radius: radiusValue,
+                    focalRadius: 300,
+                    transform: const GradientRotation(0),
+                    colors: const [
+                      Color.fromARGB(255, 0, 0, 0),
+                      Color.fromARGB(255, 29, 29, 29)
+                    ],
                   ),
-                );
-              },
-            )
-                .animate()
-                .fade(duration: 500.ms)
-                .scaleXY(end: 1.02, duration: 500.ms),
+                ),
+              );
+            },
+          )
+              .animate()
+              .fade(duration: 500.ms)
+              .scaleXY(end: 1.02, duration: 500.ms),
 
-            /// 2. **Apply blur effect to everything below**
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-              child: Container(
-                color: Colors.black
-                    .withValues(alpha: 0.05), // Adjust opacity as needed
-              ),
+          /// 2. **Apply blur effect to everything below**
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+            child: Container(
+              color: Colors.black
+                  .withValues(alpha: 0.05), // Adjust opacity as needed
             ),
+          ),
 
-            /// 3. **Foreground content**
-            /// Page View for content
-            PageView(
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(), // prevent swiping
-              children: const [
-                AboutPageTab(),
-                ProjectsPageTab(),
-                ExperiencePageTab(),
-                ContactPageTab(),
-              ],
-            ),
+          /// 3. **Foreground content**
+          /// Page View for content
+          PageView(
+            controller: _pageController,
+            physics: const NeverScrollableScrollPhysics(), // prevent swiping
+            children: const [
+              AboutPageTab(),
+              ProjectsPageTab(),
+              ExperiencePageTab(),
+              ContactPageTab(),
+            ],
+          ),
 
-            /// Navigation drawer-like UI
-            if (isNavOpen)
-              Align(
+          /// Navigation drawer-like UI
+          if (isNavOpen)
+            Container(
+              color: AppColors.background.withValues(alpha: 00.9),
+              child: Align(
                 alignment: Alignment.center,
-                child: Material(
-                  color: Colors.black.withValues(alpha: 0.6),
-                  child: SizedBox(
-                    width: maxWidth * 0.5,
-                    height: maxHeight,
-                    child: NavbarButtonsWidget(selectedIndex: selectedIndex),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: maxWidth * 0.3, vertical: maxHeight * 0.1),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Consumer(
+                          builder: (context, ref, child) => IconButton(
+                              onPressed: () => ref
+                                  .read(isNavOpenProvider.notifier)
+                                  .state = false,
+                              icon: Icon(
+                                Icons.close,
+                                color: AppColors.light,
+                                size: maxHeight * 0.05,
+                              )),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 10,
+                        child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: maxWidth * 0.01,
+                                vertical: maxHeight * 0.01),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.light),
+                                borderRadius:
+                                    BorderRadius.circular(maxHeight * 0.05)),
+                            child: NavbarButtonsWidget(
+                                selectedIndex: selectedIndex)),
+                      ),
+                    ],
                   ),
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }

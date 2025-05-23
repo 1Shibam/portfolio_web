@@ -76,7 +76,7 @@ class _ProjectSectionWidgetState extends State<ProjectSectionWidget> {
                                     section1: singleProj.demo == ""
                                         ? 'live Demo'
                                         : 'video Demo',
-                                    section2: 'Tech-Stacks'),
+                                    section2: 'Technologies Used'),
                               );
                             },
                           );
