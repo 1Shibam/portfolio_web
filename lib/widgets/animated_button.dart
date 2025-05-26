@@ -44,7 +44,9 @@ class AnimatedButton extends StatelessWidget {
               : [],
         ),
         child: Center(
-          child: Text(title, style: AppTextStyles.bold(context)),
+          child: isMobile == true
+              ? Text(title, style: AppTextStyles.medium(context))
+              : Text(title, style: AppTextStyles.bold(context)),
         ),
       ),
     );

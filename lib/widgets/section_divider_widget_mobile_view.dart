@@ -119,7 +119,7 @@ class _SectionDividerWidgetMobileViewState
               /// Action Buttons
               SizedBox(height: widget.maxHeight * 0.02),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (widget.downloadLink.isNotEmpty)
                     Flexible(
@@ -136,6 +136,9 @@ class _SectionDividerWidgetMobileViewState
                       ),
                     ).animate().fade(duration: 800.ms),
                   if (widget.downloadLink.isNotEmpty) const SizedBox.shrink(),
+                  SizedBox(
+                    width: widget.maxWidth * 0.02,
+                  ),
                   Flexible(
                     child: MouseRegion(
                       onEnter: (_) => setState(() => isHovered2 = true),

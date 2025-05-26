@@ -52,7 +52,7 @@ class _ExperienceSectionState extends State<ExperienceSection> {
 
                   return ListView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: data.experience.length,
                     itemBuilder: (context, index) {
                       return ExperienceCard(
